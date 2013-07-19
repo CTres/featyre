@@ -1,0 +1,43 @@
+<div class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+          <% unless user_signed_in?%>
+          <div class="navbar-content">
+            <a class="brand" href="#">Featyre </a>
+          </div>
+          <form class="navbar-search">
+            <input type="text" class="search-query" placeholder="Search..."> 
+          </form>
+          <ul class="nav">
+            <li>
+              <a href="#">Explore</a> 
+            </li>
+            <li>
+              <a href="#">About</a> 
+            </li>
+          </ul>
+          <ul id="user-links">
+            <a class="btn-auth btn-github" a href="/users/auth/github">
+              Sign in with <b>github</b>
+            </a>
+          </ul>
+            <% else %>
+            <div class="navbar-content">
+              <a class="brand" href="/">F </a>
+            </div>
+              <form class="navbar-search">
+                <input type="text" class="search-query" placeholder="Search..."> 
+              </form>
+              <ul class="nav">
+                <li>
+                  <a href="#">settings</a> 
+                </li>
+              </ul>
+              <ul id="user-links">
+                 <a class="btn-auth btn-github" a href="/users/logout" data-method="delete" rel="nofollow">logout</a>
+               </ul>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
