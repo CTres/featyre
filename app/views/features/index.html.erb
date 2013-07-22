@@ -1,0 +1,10 @@
+<h1>Features</h1>
+
+<div id="features">
+<% @features.each do |feature| %>
+  <h2><%= link_to feature.title, feature %></h2>
+  <%= simple_format feature.text %>
+<% end %>
+</div>
+
+<p><%= link_to "Add Feature", new_feature_path %></p>

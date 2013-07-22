@@ -1,6 +1,10 @@
-batman = Article.create! name: "Batman", content: <<-ARTICLE
-Batman is a fictional character created by the artist Bob Kane and writer Bill Finger. A comic book superhero, Batman first appeared in Detective Comics #27 (May 1939), and since then has appeared primarily in publications by DC Comics. Originally referred to as "The Bat-Man" and still referred to at times as "The Batman", he is additionally known as "The Caped Crusader", "The Dark Knight", and the "World's Greatest Detective," among other titles. (from Wikipedia)
-ARTICLE
+ruby_project = Feature.create! title: "Asana Ruby Wrapper", text: <<-FEATURE
+here are the best practices of the asana ruby wrapper feature that we just shipped. Use httparty for complete flexibility. 
+FEATURE
+
+feature_newsfeed = Feature.create! title: "Featyre Newsfeed", text: <<-FEATURE
+Best advice, dogfood your own features and test them until you are blue in the face. 
+FEATURE
 
 superman = Article.create! name: "Superman", content: <<-ARTICLE
 Superman is a fictional comic book superhero appearing in publications by DC Comics, widely considered to be an American cultural icon. Created by American writer Jerry Siegel and Canadian-born American artist Joe Shuster in 1932 while both were living in Cleveland, Ohio, and sold to Detective Comics, Inc. (later DC Comics) in 1938, the character first appeared in Action Comics #1 (June 1938) and subsequently appeared in various radio serials, television programs, films, newspaper strips, and video games. (from Wikipedia)

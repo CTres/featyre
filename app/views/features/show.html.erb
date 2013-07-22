@@ -1,0 +1,8 @@
+<h1><%= @feature.title %></h1>
+
+<%= simple_format @feature.text %>
+
+<p>
+  <%= link_to "Edit", edit_feature_path(@feature) %> |
+  <%= link_to "Back to Features", features_path %>
+</p>
