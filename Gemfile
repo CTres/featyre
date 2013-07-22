@@ -23,7 +23,7 @@ end
 
 gem 'jquery-rails'
 gem 'rails3-jquery-autocomplete'
-gem 'jquery-ui-rails'
+#gem 'jquery-ui-rails'
 gem 'acts-as-taggable-on'
 
 
