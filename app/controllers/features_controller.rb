@@ -1,5 +1,6 @@
 class FeaturesController < ApplicationController
-  before_filter :find_user, :only => :show
+  before_filter :find_user
+  before_filter :authenticate_user!, :except => :index
 
   def index
     @features = Feature.all
@@ -10,7 +11,7 @@ class FeaturesController < ApplicationController
   end
 
   def new
-    @feature = @user.feature.new
+    @feature = @user.features.new
   end
 
   def edit
@@ -18,7 +19,7 @@ class FeaturesController < ApplicationController
   end
 
   def create
-    @feature = Feature.new(params[:feature])
+    @feature = @user.features.new(params[:feature])
     if @feature.save
       redirect_to features_path, notice: "Feature was successfully created."
     else
@@ -45,8 +46,10 @@ class FeaturesController < ApplicationController
   end
 
    def find_user
-    #if params[current_user].present?
-      puts current_user[1]
-            #@user = User.find(params[:user_id])
+    if user_signed_in?
+      @user = User.find(current_user.id)
+      puts "wowowowowowowowowowowowowowowowooww"
+      puts @user.id
+    end
   end
 end
