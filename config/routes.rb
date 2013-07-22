@@ -6,4 +6,6 @@ Blog::Application.routes.draw do
   resources :features do
   	get :autocomplete_tag_name, :on => :collection
   end
+  
+  resources :collaborators
 end

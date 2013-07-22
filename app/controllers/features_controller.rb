@@ -30,7 +30,6 @@ class FeaturesController < ApplicationController
 
   def update
     @feature = @user.features.find(params[:id])
-
     if @feature.update_attributes(params[:feature])
       redirect_to @feature, notice: 'Feature was successfully updated.'
     else
