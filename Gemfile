@@ -22,5 +22,11 @@ group :assets do
 end
 
 gem 'jquery-rails'
+gem 'rails3-jquery-autocomplete'
+gem 'jquery-ui-rails'
+gem 'acts-as-taggable-on'
+
+
+
 
 

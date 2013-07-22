@@ -1,10 +1,19 @@
 <h1>Features</h1>
 
-<div id="features">
-<% @features.each do |feature| %>
-  <h2><%= link_to feature.title, feature %></h2>
-  <%= simple_format feature.text %>
+	<% @features.each do |feature| %>
+ 		<h4><%= link_to feature.title, feature %></h4>
+ 		<h5>url: <%= feature.url %></h5>
+ 		posted by: <%=link_to feature.user.username, feature.user %>
+	</ul>
+	<p>
+		description: <%= feature.description %>
+		<br>
+		built with: <%= feature.tag_list %>
+		<br>
+  	collaborators: 
+  	<br>
+  	learned: <%= feature.text %>
+  </p>
+  <hr>
 <% end %>
-</div>
-
 <p><%= link_to "Add Feature", new_feature_path %></p>

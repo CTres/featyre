@@ -1,6 +1,7 @@
 class FeaturesController < ApplicationController
   before_filter :find_user
   before_filter :authenticate_user!, :except => :index
+  autocomplete :tag, :name, :class_name => 'ActsAsTaggableOn::Tag'
 
   def index
     @features = Feature.all
@@ -28,15 +29,13 @@ class FeaturesController < ApplicationController
   end
 
   def update
-    @feature = Feature.find(params[:id])
+    @feature = @user.features.find(params[:id])
 
-    respond_to do |format|
-      if @feature.update_attributes(params[:feature])
-        redirect_to @features, notice: 'Feature was successfully updated.'
-      else
-        render action: "edit" 
+    if @feature.update_attributes(params[:feature])
+      redirect_to @feature, notice: 'Feature was successfully updated.'
+    else
+      render action: "edit" 
       end
-    end
   end
 
   def destroy
@@ -48,8 +47,6 @@ class FeaturesController < ApplicationController
    def find_user
     if user_signed_in?
       @user = User.find(current_user.id)
-      puts "wowowowowowowowowowowowowowowowooww"
-      puts @user.id
     end
   end
 end

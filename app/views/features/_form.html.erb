@@ -15,11 +15,29 @@
     <%= f.label :title %><br />
     <%= f.text_field :title %>
   </div>
+
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_field :description %>
+  </div>
+
+  <div class="field">
+    <%= f.label :url %><br />
+    <%= f.text_field :url %>
+  </div>
+
+  <div class="field">
+    <%= f.label 'languages' %><br />
+    <%= f.autocomplete_field :tag_list, autocomplete_tag_name_features_path, :"data-delimiter" => ', ' %> 
+  </div>
+
   <div class="field">
     <%= f.label :text %><br />
     <%= f.text_area :text %>
   </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+
