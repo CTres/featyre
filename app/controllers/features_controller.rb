@@ -13,11 +13,14 @@ class FeaturesController < ApplicationController
 
   def new
     @feature = @user.features.new
+    @collaborators = @feature.collaborators.build
   end
 
   def edit
     @feature = Feature.find(params[:id])
+    @collaborator = @feature.collaborators.new(params[:feature])
   end
+
 
   def create
     @feature = @user.features.new(params[:feature])

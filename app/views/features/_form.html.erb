@@ -1,3 +1,4 @@
+<%= @collaborator %>
 <%= form_for(@feature) do |f| %>
   <% if @feature.errors.any? %>
     <div id="error_explanation">
@@ -29,6 +30,11 @@
   <div class="field">
     <%= f.label 'languages' %><br />
     <%= f.autocomplete_field :tag_list, autocomplete_tag_name_features_path, :"data-delimiter" => ', ' %> 
+  </div>
+
+  <div class="field">
+    <%= f.label 'collaborators' %><br />
+    <%= f.text_field :collaborators%> 
   </div>
 
   <div class="field">
