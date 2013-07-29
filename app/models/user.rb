@@ -1,5 +1,9 @@
 class User < ActiveRecord::Base
-  has_many :features
+  #Associations
+  has_many :owned_features, class_name: 'Feature', foreign_key: :user_id, dependent: :destroy
+  has_many :feature_users
+  has_many :collaborated_features, through: :feature_users
+
   devise :database_authenticatable, :registerable, :omniauthable,
          :recoverable, :rememberable, :trackable, :validatable
 
@@ -8,6 +12,7 @@ class User < ActiveRecord::Base
   validates_presence_of :username
   validates_uniqueness_of :username
 
+  # Methods
   def self.from_omniauth(auth)
     where(auth.slice(:provider, :uid)).first_or_create do |user|
       user.provider = auth.provider
@@ -38,5 +43,14 @@ class User < ActiveRecord::Base
     else
       super
     end
+  end
+
+  def add_collaborator!(username)
+    collaborating_user = find_user_by_username(username)
+    feature_users.create!(user_id: collaborating_user.id)
+  end
+
+  def find_user_by_username(username)
+     User.find_by_username(username)
   end
 end

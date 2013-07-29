@@ -3,14 +3,15 @@
 	<% @features.each do |feature| %>
  		<h4><%= link_to feature.title, feature %></h4>
  		<h5>url: <%= feature.url %></h5>
- 		posted by: @<%=feature.user.username %>
+ 			posted by: @<%=feature.user.username %>
+ 	
 	</ul>
 	<p>
 		description: <%= feature.description %>
 		<br>
 		built with: <%= feature.tag_list %>
 		<br>
-  	collaborators: 
+  	built by: <%= %>
   	<br>
   	learned: <%= feature.text %>
   </p>

@@ -1,10 +1,17 @@
 class FeaturesController < ApplicationController
+  #Filters
   before_filter :find_user
   before_filter :authenticate_user!, :except => :index
+
   autocomplete :tag, :name, :class_name => 'ActsAsTaggableOn::Tag'
 
+  #Methods 
   def index
+    if user_signed_in?
+      @features = @user.owned_features.all
+    else
     @features = Feature.all
+    end
   end
 
   def show
@@ -12,18 +19,16 @@ class FeaturesController < ApplicationController
   end
 
   def new
-    @feature = @user.features.new
-    @collaborators = @feature.collaborators.build
+    @feature = @user.owned_features.new
   end
 
   def edit
     @feature = Feature.find(params[:id])
-    @collaborator = @feature.collaborators.new(params[:feature])
   end
 
 
   def create
-    @feature = @user.features.new(params[:feature])
+    @feature = @user.owned_features.new(params[:feature])
     if @feature.save
       redirect_to features_path, notice: "Feature was successfully created."
     else

@@ -11,9 +11,9 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130722131925) do
+ActiveRecord::Schema.define(:version => 20130729074829) do
 
-  create_table "collaborators", :force => true do |t|
+  create_table "feature_users", :force => true do |t|
     t.integer  "user_id"
     t.integer  "feature_id"
     t.datetime "created_at"
