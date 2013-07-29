@@ -20,6 +20,7 @@ class FeaturesController < ApplicationController
 
   def new
     @feature = @user.owned_features.new
+    @feature.collaborators.build
   end
 
   def edit
@@ -51,9 +52,13 @@ class FeaturesController < ApplicationController
     redirect_to users_url
   end
 
-   def find_user
+  def find_user
     if user_signed_in?
       @user = User.find(current_user.id)
     end
+  end
+
+  def add_collaborator(username)
+    @user.add_collaborator!(username)
   end
 end

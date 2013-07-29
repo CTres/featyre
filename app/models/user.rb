@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :omniauthable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :username
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :username, :collaborator_id
   
   validates_presence_of :username
   validates_uniqueness_of :username
@@ -46,7 +46,7 @@ class User < ActiveRecord::Base
   end
 
   def add_collaborator!(username)
-    collaborating_user = find_user_by_username(username)
+    collaboratinguser = find_user_by_username(username)
     feature_users.create!(user_id: collaborating_user.id)
   end
 
