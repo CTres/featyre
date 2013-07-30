@@ -25,6 +25,10 @@ gem 'acts-as-taggable-on'
 gem 'bootstrap-wysihtml5-rails'
 
 
+group :development do
+	gem 'awesome_print'
+	gem 'quiet_assets'
+end
 
 
 

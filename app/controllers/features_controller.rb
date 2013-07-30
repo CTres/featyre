@@ -54,11 +54,8 @@ class FeaturesController < ApplicationController
 
   def find_user
     if user_signed_in?
+      puts current_user.id
       @user = User.find(current_user.id)
     end
-  end
-
-  def add_collaborator(username)
-    @user.add_collaborator!(username)
   end
 end

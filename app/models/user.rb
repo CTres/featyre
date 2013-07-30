@@ -4,13 +4,16 @@ class User < ActiveRecord::Base
   has_many :feature_users
   has_many :collaborated_features, through: :feature_users
 
-  devise :database_authenticatable, :registerable, :omniauthable,
-         :recoverable, :rememberable, :trackable, :validatable
-
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :username, :collaborator_id
-  
+  #Validations
   validates_presence_of :username
   validates_uniqueness_of :username
+
+  #Attributes
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :username, :collaborator_id
+
+  #Scopes
+  devise :database_authenticatable, :registerable, :omniauthable,
+         :recoverable, :rememberable, :trackable, :validatable
 
   # Methods
   def self.from_omniauth(auth)
@@ -43,14 +46,5 @@ class User < ActiveRecord::Base
     else
       super
     end
-  end
-
-  def add_collaborator!(username)
-    collaboratinguser = find_user_by_username(username)
-    feature_users.create!(user_id: collaborating_user.id)
-  end
-
-  def find_user_by_username(username)
-     User.find_by_username(username)
   end
 end

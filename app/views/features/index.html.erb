@@ -1,5 +1,4 @@
 <h1>Features</h1>
-
 	<% @features.each do |feature| %>
  		<h4><%= link_to feature.title, feature %></h4>
  		<h5>url: <%= feature.url %></h5>
@@ -12,6 +11,8 @@
 		built with: <%= feature.tag_list %>
 		<br>
   	built by: <%= feature.collaborators%>
+  		<br>
+  	built by: <%= feature.collaborator_list%>
   	<br>
   	learned: <%= feature.text %>
   </p>
