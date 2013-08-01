@@ -1,21 +1,45 @@
-<h1>Features</h1>
-	<% @features.each do |feature| %>
- 		<h4><%= link_to feature.title, feature %></h4>
- 		<h5>url: <%= feature.url %></h5>
- 			posted by: @<%=feature.user.username %>
- 	
-	</ul>
-	<p>
-		description: <%= feature.description %>
-		<br>
-		built with: <%= feature.tag_list %>
-		<br>
-  	built by: <%= feature.collaborators%>
-  		<br>
-  	built by: <%= feature.collaborator_list%>
-  	<br>
-  	learned: <%= feature.text %>
+
+<div id="feature-browser" class="row">
+	<div class="span6">
+		<h3>Features</h3>
+		<div id="feature-list">
+			
+			<% @features.each do |feature| %>
+				<div id="feature">
+ 				<h4 class="title">
+ 					<%= link_to feature.title, feature%>
+ 				</h4>
+ 				<h5>url: <%= feature.url %></h5>
+ 				<span>by <%=feature.user.username %>
+ 				</span>
+				<p>
+				description: <%= feature.description %>
+				<br>
+				built with: <%= feature.tag_list %>
+				<br>
+				
+  			by <%= feature.collaborators%>
+  		</span>
+  			<br>
+  			built by: <%= feature.collaborators%>
+  			<br>
+  			learned: <%= feature.text %>
   </p>
-  <hr>
+  </div>
 <% end %>
-<p><%= link_to "Add Feature", new_feature_path %></p>
+		
+		</div>
+	</div> 
+	
+	<div class="span6">
+		<div id="unpublished">
+			<h3>Add Feature</h3>
+			<div id="feature-add">
+				<%= render 'form' if user_signed_in?  %>
+			</div>
+		</div>
+	</div>
+	
+</div>
+
+

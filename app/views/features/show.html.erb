@@ -1,8 +1,18 @@
-<h1><%= @feature.title %></h1>
-<h2> <%= @feature.tag_list %> </h2>
-<%= simple_format @feature.text %>
-<%= @collaborators %>
-<p>
-  <%= link_to "Edit", edit_feature_path(@feature) %> |
-  <%= link_to "Back to Features", features_path %>
-</p>
+<div id="feature-browser" class="row">
+	<div class="span8">
+		<div class="well">
+			<h3><%= @feature.title %></h3>
+			<h4> <%= @feature.tag_list %> </h4>
+			<%= simple_format @feature.text %>
+			<span>
+				<%= @feature.collaborators_list.each do |c| %>
+				<%= link_to c.username%>
+				<% end %>
+			</span>
+			<p>
+			  <%= link_to "Edit", edit_feature_path(@feature) %> |
+			  <%= link_to "Back to Features", features_path %>
+			</p>
+		</div>
+	</div>
+</div>

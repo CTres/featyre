@@ -8,14 +8,25 @@ class User < ActiveRecord::Base
   validates_presence_of :username
   validates_uniqueness_of :username
 
+  devise :database_authenticatable, :registerable, :omniauthable,
+         :recoverable, :rememberable, :trackable
+         #:validatable short term fix to turn this off so that self.from_github works
+  
   #Attributes
   attr_accessible :email, :password, :password_confirmation, :remember_me, :username, :collaborator_id
 
-  #Scopes
-  devise :database_authenticatable, :registerable, :omniauthable,
-         :recoverable, :rememberable, :trackable, :validatable
-
   # Methods
+  def self.from_github(auth)
+    # fix the string to read like omniauth uid
+    User.where(uid: auth.id).first_or_create do |user|
+      user.provider = 'github'
+      user.uid = auth.id
+      user.username = auth.login
+      user.email = auth.email
+      user.password = Devise.friendly_token[0,20]
+    end
+  end
+
   def self.from_omniauth(auth)
     where(auth.slice(:provider, :uid)).first_or_create do |user|
       user.provider = auth.provider

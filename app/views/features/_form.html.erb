@@ -1,9 +1,7 @@
-<%= simple_form_for(@feature) do |f| %>
+<%= simple_form_for(@feature, :html => { :class => "form-vertical"}) do |f| %>
 	<%= f.input :title%>
 	<%= f.input :description %>
 	<%= f.input :url %>
 	<%= f.input :tag_list %>
-	<%= f.association :collaborators, label_method: :username, as: :string, placeholder: 'username or email' %>
 	<%= f.button :submit %>
-<% end %>
-
+	<% end %>

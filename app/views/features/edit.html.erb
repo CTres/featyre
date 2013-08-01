@@ -1,6 +1,18 @@
-<h1>Editing feature</h1>
 
-<%= render 'form' %>
+<div id="container">
+	<div id="editing" class="row">
+		<div class="span6">
+			<h3>Editing feature</h3>
+			<%= render 'form' %>
+		</div>
+		<div id="add-collaborator" class="span4">
+			<%= render 'collaborator' %>
+		</div>
+
+
+	</div>
+</div>
+
 
 <%= link_to 'Show', @feature %> |
 <%= link_to 'Back', features_path %>

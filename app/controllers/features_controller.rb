@@ -7,10 +7,10 @@ class FeaturesController < ApplicationController
 
   #Methods 
   def index
-    if user_signed_in?
-      @features = @user.owned_features.all
-    else
     @features = Feature.all
+    if user_signed_in?
+    @feature = @user.owned_features.new
+    @feature.collaborators.build
     end
   end
 
@@ -27,9 +27,9 @@ class FeaturesController < ApplicationController
     @feature = Feature.find(params[:id])
   end
 
-
   def create
     @feature = @user.owned_features.new(params[:feature])
+    
     if @feature.save
       redirect_to features_path, notice: "Feature was successfully created."
     else
@@ -54,8 +54,20 @@ class FeaturesController < ApplicationController
 
   def find_user
     if user_signed_in?
-      puts current_user.id
       @user = User.find(current_user.id)
     end
+  end
+
+  def add_collaborator
+    @feature = Feature.find(params[:id])
+    @feature.insert_collaborator(params[:feature][:temp_collaborator])
+    redirect_to :back
+  end
+
+  def remove_collaborator
+    puts params
+    @feature = Feature.find(params[:id])
+    @feature.delete_collaborator(params[:temp_collaborator])
+    redirect_to :back
   end
 end
