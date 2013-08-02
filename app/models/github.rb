@@ -4,25 +4,25 @@ class Github
 		@client = Octokit::Client.new(login: "me", oauth_token: token)
 	end
 
-	def username_exists(username)
-		@client.user(username)
+	def find_by_username(username)
+		client = @client.user(username)
 	end
 
 	def find_by_name(name)
 		@client.search_users(name)
+
 	end
 
 	def all_users()
 		@client.all_users()
 	end
 
-
-	def create_user_from_username(hash = {})
-		#throw it through the omniauth 
+	def create_user_by_username(hash = {})
+		puts hash
 		user = User.from_github(hash)
 		if user.persisted?
-			puts 'saved'
-			else
+			user
+		else
 			puts 'not saved'
 		end
 	end

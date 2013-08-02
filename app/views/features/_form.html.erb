@@ -3,5 +3,11 @@
 	<%= f.input :description %>
 	<%= f.input :url %>
 	<%= f.input :tag_list %>
+	<%= f.input :text %>
+
 	<%= f.button :submit %>
 	<% end %>
+
+	<script type="text/javascript">
+	$('#text').wysihtml5();
+</script>

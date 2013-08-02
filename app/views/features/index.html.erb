@@ -5,26 +5,19 @@
 		<div id="feature-list">
 			
 			<% @features.each do |feature| %>
-				<div id="feature">
- 				<h4 class="title">
- 					<%= link_to feature.title, feature%>
- 				</h4>
- 				<h5>url: <%= feature.url %></h5>
- 				<span>by <%=feature.user.username %>
- 				</span>
-				<p>
-				description: <%= feature.description %>
-				<br>
-				built with: <%= feature.tag_list %>
-				<br>
-				
-  			by <%= feature.collaborators%>
-  		</span>
-  			<br>
-  			built by: <%= feature.collaborators%>
-  			<br>
+				<div id="feature" draggable="true">
+ 					<h4 class="title"> <%= link_to feature.title, feature%> </h4>
+					<p>
+						description: <%= feature.description %> <br>
+						built with: <%= feature.tag_list %> <br>
+						<span>
+  						by <% feature.collaborators.each do |collaborator| %>
+  						<%= collaborator.username %>
+  						<% end %>
+  					</span>
+  				<br>
   			learned: <%= feature.text %>
-  </p>
+  				</p>
   </div>
 <% end %>
 		

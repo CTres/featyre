@@ -1,12 +1,16 @@
 <legend> Collaborators </legend>
-<% @feature.collaborators.each do |c| %>
-	<ul>
-		<span id="collaborator-tag"><b>
-			<%=link_to c.username%> <%= link_to glyph(:remove),remove_collaborator_path(:temp_collaborator => c.username), class: 'remove_icon' %> 
-		</b> </span> </ul>
-		<br>
-<% end %>
-			
+<div class="well">
+	<% @feature.collaborators.each_with_index do |c, index| %>
+		<ul>
+			<span id="collaborator-tag"><b>
+				<%=link_to c.username%> 
+				<% if index > 0 %>
+				<%= link_to glyph(:remove),remove_collaborator_path(:temp_collaborator => c.username), class: 'remove_icon' %> 
+				<% end %>
+			</b> </span> </ul>
+
+	<% end %>
+</div>
 
 <%= simple_form_for(@feature, :url => add_collaborator_path, :html => { :class => "form-vertical"}) do |f| %>
 	 <%= f.input :temp_collaborator, :wrapper => :prepend, :label => false, :hint => "email or github username" do %>

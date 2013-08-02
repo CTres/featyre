@@ -29,7 +29,7 @@ class FeaturesController < ApplicationController
 
   def create
     @feature = @user.owned_features.new(params[:feature])
-    
+    @feature.collaborators << @user
     if @feature.save
       redirect_to features_path, notice: "Feature was successfully created."
     else
@@ -38,7 +38,7 @@ class FeaturesController < ApplicationController
   end
 
   def update
-    @feature = @user.features.find(params[:id])
+    @feature = @user.owned_features.find(params[:id])
     if @feature.update_attributes(params[:feature])
       redirect_to @feature, notice: 'Feature was successfully updated.'
     else
@@ -60,7 +60,8 @@ class FeaturesController < ApplicationController
 
   def add_collaborator
     @feature = Feature.find(params[:id])
-    @feature.insert_collaborator(params[:feature][:temp_collaborator])
+    username = params[:feature][:temp_collaborator]
+    @feature.insert_collaborator(username, session['token'])
     redirect_to :back
   end
 
