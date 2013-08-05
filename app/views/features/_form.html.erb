@@ -1,13 +1,9 @@
-<%= simple_form_for(@feature, :html => { :class => "form-vertical"}) do |f| %>
+<div class="well">
+<%= simple_form_for(@feature) do |f| %>
 	<%= f.input :title%>
-	<%= f.input :description %>
-	<%= f.input :url %>
-	<%= f.input :tag_list %>
-	<%= f.input :text %>
-
-	<%= f.button :submit %>
+	<%= f.input :company %>
+	<%= f.input :text, placeholder: "brief description of the feature", :input_html => { :cols => 50, :rows => 5 } %>
+	<%= f.input :tag_list, label: 'using', placeholder: "e.g. rails 3, bootstrap, httparty" %>
+	<%= f.button :submit  %>
 	<% end %>
-
-	<script type="text/javascript">
-	$('#text').wysihtml5();
-</script>
+</div>

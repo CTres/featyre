@@ -1,0 +1,18 @@
+
+<div id="feature" draggable="true">
+<h4 class="title"> <%= link_to feature.title, feature%> </h4>
+<p>
+	<ul class="unstyled">
+<li> @ <%= feature.company %> </li>
+<li> description: <%= feature.description %> </li>
+<li> built with: <%= feature.tag_list %> 		 </li>
+<span>
+  <% unless feature.collaborators.nil? %>
+    <% feature.collaborators.each do |collaborator| %>
+      <%= collaborator.username %>
+    <% end %>
+  <% end %>
+</span>
+<br>
+</p>
+</div>

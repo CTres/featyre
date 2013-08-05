@@ -6,7 +6,8 @@ class Feature < ActiveRecord::Base
  	
  	#Attributes
  	accepts_nested_attributes_for :feature_users
- 	attr_accessible :user_id, :text, :title, :tag_list, :url, :description, :collaborator_ids, :collaborators_list, :collaborators, :collaborator_list
+ 	attr_accessible :user_id, :text, :title, :tag_list, :url, :description,  
+  :collaborator_ids, :collaborators, :collaborator_list, :company
   attr_accessor :temp_collaborator
 
  	#Scopes
@@ -14,7 +15,7 @@ class Feature < ActiveRecord::Base
 
   #Methods
   def collaborators_list()
-  	collaborators = self.collaborators
+  	collaborators = self.collaborators.to_a
   end
 
   def collaborators_names()

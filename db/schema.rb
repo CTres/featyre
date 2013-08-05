@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130729074829) do
+ActiveRecord::Schema.define(:version => 20130805123101) do
 
   create_table "feature_users", :force => true do |t|
     t.integer  "user_id"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(:version => 20130729074829) do
     t.datetime "updated_at",  :null => false
     t.string   "url"
     t.string   "description"
+    t.string   "company"
   end
 
   add_index "features", ["user_id"], :name => "index_features_on_user_id"

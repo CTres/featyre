@@ -3,30 +3,13 @@
 	<div class="span6">
 		<h3>Features</h3>
 		<div id="feature-list">
-			
-			<% @features.each do |feature| %>
-				<div id="feature" draggable="true">
- 					<h4 class="title"> <%= link_to feature.title, feature%> </h4>
-					<p>
-						description: <%= feature.description %> <br>
-						built with: <%= feature.tag_list %> <br>
-						<span>
-  						by <% feature.collaborators.each do |collaborator| %>
-  						<%= collaborator.username %>
-  						<% end %>
-  					</span>
-  				<br>
-  			learned: <%= feature.text %>
-  				</p>
-  </div>
-<% end %>
-		
+			<%= render @features %>
 		</div>
 	</div> 
 	
 	<div class="span6">
 		<div id="unpublished">
-			<h3>Add Feature</h3>
+			<legend> Quick Add a Feature </legend>
 			<div id="feature-add">
 				<%= render 'form' if user_signed_in?  %>
 			</div>
