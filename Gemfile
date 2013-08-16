@@ -7,6 +7,13 @@ gem 'octokit'
 gem 'figaro'
 gem 'sqlite3'
 gem 'simple_form'
+gem 'jquery-rails'
+gem 'rails3-jquery-autocomplete'
+gem 'jquery-ui-rails'
+gem 'acts-as-taggable-on'
+gem 'ckeditor_rails'
+
+
 
 group :assets do
   #gem 'sass-rails'
@@ -17,12 +24,6 @@ group :assets do
   gem 'haml'
   gem 'therubyracer'
 end
-
-gem 'jquery-rails'
-gem 'rails3-jquery-autocomplete'
-gem 'jquery-ui-rails'
-gem 'acts-as-taggable-on'
-gem 'bootstrap-wysihtml5-rails'
 
 
 group :development do

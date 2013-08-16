@@ -34,9 +34,9 @@ GEM
     arel (3.0.2)
     awesome_print (1.1.0)
     bcrypt-ruby (3.1.1)
-    bootstrap-wysihtml5-rails (0.3.1.21)
-      railties (>= 3.0)
     builder (3.0.4)
+    ckeditor_rails (4.2)
+      railties (>= 3.0)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
       railties (~> 3.2.0)
@@ -45,7 +45,7 @@ GEM
       execjs
     coffee-script-source (1.6.3)
     commonjs (0.2.6)
-    devise (3.0.0)
+    devise (3.0.2)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 3.2.6, < 5)
@@ -87,7 +87,7 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.23)
-    multi_json (1.7.7)
+    multi_json (1.7.8)
     multipart-post (1.2.0)
     netrc (0.7.7)
     oauth2 (0.8.1)
@@ -161,7 +161,7 @@ GEM
     treetop (1.4.14)
       polyglot
       polyglot (>= 0.3.1)
-    twitter-bootstrap-rails (2.2.7)
+    twitter-bootstrap-rails (2.2.8)
       actionpack (>= 3.1)
       execjs
       rails (>= 3.1)
@@ -172,6 +172,8 @@ GEM
       multi_json (~> 1.0, >= 1.0.2)
     warden (1.2.3)
       rack (>= 1.0)
+    wysihtml5-rails (0.0.4)
+      railties (>= 3.1.0)
 
 PLATFORMS
   ruby
@@ -179,7 +181,7 @@ PLATFORMS
 DEPENDENCIES
   acts-as-taggable-on
   awesome_print
-  bootstrap-wysihtml5-rails
+  ckeditor_rails
   coffee-rails (~> 3.2.1)
   devise
   figaro
@@ -197,3 +199,4 @@ DEPENDENCIES
   therubyracer
   twitter-bootstrap-rails
   uglifier (>= 1.0.3)
+  wysihtml5-rails

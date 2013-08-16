@@ -1,9 +1,10 @@
 <div class="well">
+	<div class="wysihtml5-toolbar"> </div>
 <%= simple_form_for(@feature) do |f| %>
 	<%= f.input :title%>
 	<%= f.input :company %>
-	<%= f.input :text, placeholder: "brief description of the feature", :input_html => { :cols => 50, :rows => 5 } %>
 	<%= f.input :tag_list, label: 'using', placeholder: "e.g. rails 3, bootstrap, httparty" %>
+	<%= f.input :text, placeholder: "brief description of the feature", :input_html => {toolbar: 'MyToolbar', class: 'ckeditor' } %>
 	<%= f.button :submit  %>
 	<% end %>
 </div>
