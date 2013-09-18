@@ -1,18 +1,42 @@
+<% if @filters %>
+  <legend> Filters: 
+    <%= @filters.each do |f| %>
+      <span class="label label-info" id="nolink"> <%= f%> </span>
+    <% end %>
+  </legend> 
+  <% else %>
+  <legend> </legend>
+<% end %>
 
-<div id="feature" draggable="true">
-<h4 class="title"> <%= link_to feature.title, feature%> </h4>
+<div class="feature" draggable="true">
+  <% if feature.company %>
+    @<%=feature.company %>
+    <% end %>
+  <div id="title" display="inline-block">
+	<%=link_to feature.user.username, user_path(feature.user) %> shipped <%= link_to feature.title, feature %>
+	</div>
+  <div id="details">
+
+    <%= feature.text %> 
+  </div>
+    <% feature.tag_list.each do |f|%>
+    <span class="label label-info" id="nolink"> <%=link_to f, features_path(query: f) %> </span> 
+    <% end %>
+</div>
+
+
+
+<!-- <h4 class="title">  </h4>
 <p>
 	<ul class="unstyled">
 <li> @ <%= feature.company %> </li>
 <li> description: <%= feature.description %> </li>
 <li> built with: <%= feature.tag_list %> 		 </li>
 <span>
+
   <% unless feature.collaborators.nil? %>
-    <% feature.collaborators.each do |collaborator| %>
-      <%= collaborator.username %>
-    <% end %>
+   <%= feature.collaborators.map(&:username).join(', ') %>
   <% end %>
 </span>
 <br>
-</p>
-</div>
+</p> -->

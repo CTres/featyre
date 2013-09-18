@@ -7,7 +7,12 @@ class FeaturesController < ApplicationController
 
   #Methods 
   def index
-    @features = Feature.all
+    if params[:query]
+    @filters = params[:query].split
+    @features = Feature.tagged_with(@filters)
+    else
+    @features= Feature.all
+    end
     if user_signed_in?
     @feature = @user.owned_features.new
     @feature.collaborators.build

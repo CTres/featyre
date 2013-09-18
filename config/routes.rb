@@ -5,13 +5,14 @@ Blog::Application.routes.draw do
   
   root to: 'features#index'
   
-  #resources :users
   #resources :collaborators
   match "features/:id/add_collaborator" => "features#add_collaborator", as: 'add_collaborator'
   match "features/:id/remove_collaborator" => "features#remove_collaborator", as: 'remove_collaborator'
-  
+  resources :users
   resources :features do
-  	get :autocomplete_tag_name, :on => :collection
+    get :autocomplete_tag_name, :on => :collection
   end
-  
+
+
+
 end

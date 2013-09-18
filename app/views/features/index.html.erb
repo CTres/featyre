@@ -1,21 +1,23 @@
-
-<div id="feature-browser" class="row">
-	<div class="span6">
-		<h3>Features</h3>
-		<div id="feature-list">
-			<%= render @features %>
-		</div>
-	</div> 
-	
-	<div class="span6">
-		<div id="unpublished">
-			<legend> Quick Add a Feature </legend>
-			<div id="feature-add">
-				<%= render 'form' if user_signed_in?  %>
-			</div>
-		</div>
-	</div>
-	
+<div class="container" id="dashboard">
+  <ul class="nav nav-pills">
+    <li class="active"><a href="/">My Feed</a></li>
+    <li><%= link_to 'My Profile', @user %> </li>
+    <li><%= link_to 'Staff Picks', @user %> </li>
+  </ul>
+  <div id="feature-browser" class="row">
+  	<div class="span6">
+  		<div id="feature-list">
+  			<%= render @features.reverse %>
+  		</div>
+  	</div> 
+  	<div class="span4 offset1">
+  		<div id="unpublished">
+  			<div id="feature-add">
+  				<%= render 'quick_add' if user_signed_in? %>
+  			</div>
+  		</div>
+  	</div>
+  </div>
 </div>
 
 

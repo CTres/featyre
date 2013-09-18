@@ -27,11 +27,9 @@ class Feature < ActiveRecord::Base
     unless User.find_by_username(username).nil? || (self.collaborators.include? User.find_by_username(username))
       self.collaborators << User.find_by_username(username)
     else 
-      puts 'creating github token'
       g = Github.new(token)
       github_user = g.find_by_username(username)
       self.collaborators << g.create_user_by_username(github_user)
-
     end
   end
 

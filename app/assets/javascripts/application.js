@@ -14,6 +14,4 @@
 //= require jquery_ujs
 //= require ckeditor-jquery
 //= require twitter/bootstrap
-//= require wysihtml5
-//= require parser_rules/simple
 //= require_tree .
