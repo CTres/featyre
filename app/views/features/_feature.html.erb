@@ -1,6 +1,6 @@
 <% if @filters %>
   <legend> Filters: 
-    <%= @filters.each do |f| %>
+    <% @filters.each do |f| %>
       <span class="label label-info" id="nolink"> <%= f%> </span>
     <% end %>
   </legend> 
@@ -20,7 +20,7 @@
     <%= feature.text %> 
   </div>
     <% feature.tag_list.each do |f|%>
-    <span class="label label-info" id="nolink"> <%=link_to f, features_path(query: f) %> </span> 
+    <div class="label label-info"> <%=link_to f, features_path(query: f), id: 'nolink' %> </div> 
     <% end %>
 </div>
 

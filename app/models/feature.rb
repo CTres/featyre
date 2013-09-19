@@ -2,7 +2,7 @@ class Feature < ActiveRecord::Base
 	#Associations
   belongs_to :user
   has_many :feature_users
-  has_many :collaborators, class_name: 'User', through: :feature_users, source: :user, select: :username
+  has_many :collaborators, class_name: 'User', through: :feature_users, source: :user
  	
  	#Attributes
  	accepts_nested_attributes_for :feature_users
