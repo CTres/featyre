@@ -1,13 +1,3 @@
-<% if @filters %>
-  <legend> Filters: 
-    <% @filters.each do |f| %>
-      <span class="label label-info" id="nolink"> <%= f%> </span>
-    <% end %>
-  </legend> 
-  <% else %>
-  <legend> </legend>
-<% end %>
-
 <div class="feature" draggable="true">
   <% if feature.company %>
     @<%=feature.company %>

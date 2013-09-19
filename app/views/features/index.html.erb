@@ -7,6 +7,15 @@
   <div id="feature-browser" class="row">
   	<div class="span6">
   		<div id="feature-list">
+      <% if @filters %>
+        <legend> Filters: 
+          <% @filters.each do |f| %>
+            <span class="label label-info" id="nolink"> <%= f%> </span>
+          <% end %>
+        </legend> 
+      <% else %>
+      <legend> </legend>
+      <% end %>
   			<%= render @features.reverse %>
   		</div>
   	</div> 

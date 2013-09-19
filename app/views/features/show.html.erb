@@ -1,28 +1,33 @@
 <div class="container">
-<div class="row" id="feature-show">
-	<div class="span8 offset2">
-    <div class="feature-inner">
-		  <div class="feature-title" contenteditable= <%= user_owner%>>
-        <%= @feature.title %>
+  <div class="row" id="feature-row">
+    <div class="span10">
+      <div class="feature-inner">
+    	  <div class="feature-title" contenteditable= <%= user_owner%>>
+          <%= @feature.title %>
+        </div>
+        <div class="feature-subtitle editable">
+          <%= simple_format @feature.subtitle %>
+        </div>
+    	  <div class="feature-tags" contenteditable= <%= user_owner%>>
+          <h5> <%= @feature.tag_list %> </h5>
+        </div>
+        <hr>
+        <div class="feature-subtitle editable">
+    	    <%= simple_format @feature.text %>
+        </div>
       </div>
-		<div class="feature-tags" contenteditable= <%= user_owner%>>
-      <h5> <%= @feature.tag_list %> </h5>
     </div>
-    <hr>
-    <div class="feature-text" contenteditable= <%= user_owner%>>
-		  <%= simple_format @feature.text %>
-    </div>
-		<span>
-			<p> Collaborators
-			<% @feature.collaborators_list.each do |user| %>
-			<%= link_to user.username, user_path(user) %>
-			<% end %>
-			</p>
-		</span>
-		<p>
-		  <%= link_to "Edit", edit_feature_path(@feature) %> |
-		  <%= link_to "Back to Features", features_path %>
-		</p>
-	</div>
+      <div class="span1">
+          <legend> Collaborators </legend>
+    	  <div class="collaborators">
+          <% @feature.collaborators_list.each do |user| %>
+    		    <%= link_to user.username, user_path(user) %>
+    		  <% end %>
+        </div>
+    </div>	
+<!--     	<p>
+    	  <%= link_to "Edit", edit_feature_path(@feature) %> |
+    	  <%= link_to "Back to Features", features_path %>
+    	</p> -->
   </div>
 </div>

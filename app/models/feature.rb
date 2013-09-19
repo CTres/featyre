@@ -14,6 +14,8 @@ class Feature < ActiveRecord::Base
   acts_as_taggable_on :tags
 
   #Methods
+
+  #An array of user objects that are collaborators
   def collaborators_list()
   	collaborators = self.collaborators.to_a
   end
@@ -24,12 +26,15 @@ class Feature < ActiveRecord::Base
     end
   end
   def insert_collaborator(username, token)
-    unless User.find_by_username(username).nil? || (self.collaborators.include? User.find_by_username(username))
-      self.collaborators << User.find_by_username(username)
-    else 
+    #check to see if the collaborator is already added
+    unless self.collaborators.include?(User.find_by_username(username))
+      unless User.find_by_username(username).nil?
+        self.collaborators << User.find_by_username(username)
+      else
       g = Github.new(token)
       github_user = g.find_by_username(username)
       self.collaborators << g.create_user_by_username(github_user)
+      end
     end
   end
 
