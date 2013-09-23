@@ -1,14 +1,44 @@
-<div id="container">
-	<div id="editing" class="row">
-		<div class="span6">
-			<h3>Editing feature</h3>
-			<%= render 'form' %>
-		</div>
-		<div id="add-collaborator" class="span4">
-			<%= render 'collaborator' %>
-		</div>
-	</div>
+<div class="container">
+  <div class="row" id="feature-row">
+    <div class="span8 offset1 feature-inner">
+      <%= simple_form_for(@feature) do |f| %>
+        <%= f.input :title, input_html: {class: "span7"}, placeholder: "add your title", label: false, as: :text%>
+        <%= f.input :subtitle, input_html: {class: "span7"}, placeholder: "subtitle", label: false, as: :text %>
+        <%= f.input :tag_list, input_html: {class: "span7"}, placeholder: "tags, i.e python, machine learning", label: false, as: :text%>
+        <%= f.input :text, as: :hidden%>
+        <div class="feature_body editable" id="feature_body" data-placeholder='Enter your feature'> <%= @feature.text.html_safe %>
+        </div>
+        </div>
+        <div class="span3" >
+        <%= f.button :submit, "save"%>
+    <% end %>
+    <div class="collaborators">
+    <legend> Collaborators</legend>
+    <% @feature.collaborators.each_with_index do |c, index| %>
+      <li>
+        <span id="collaborator-tag">        
+        <%=link_to c.username%>
+        <% if index > 0 %>
+          <%= link_to glyph(:remove),remove_collaborator_path(:temp_collaborator => c.username), class: 'remove_icon' %> 
+          </li>
+        <% end %>
+        </span>
+    <% end %>
+    </div>
+    <br>
+    <%= simple_form_for(@feature, :url => add_collaborator_path, :html => { :class => "form-vertical"}) do |f| %>
+      <%= f.input :temp_collaborator, :wrapper => :prepend, :label => false, :hint => "email or github username" do %>
+        <%= content_tag :span, "@", :class => "add-on" %>
+        <%= f.input_field :temp_collaborator %>
+      <% end %>
+      <%= f.button :submit, :value => 'Add Collaborator' %>
+    <% end %>
+    </div>
+  </div>
 </div>
 
-<%= link_to 'Show', @feature %> |
-<%= link_to 'Back', features_path %>
+<script type="text/javascript">
+$(document).ready(function(){
+  $('.feature_body').focus();
+});
+</script>

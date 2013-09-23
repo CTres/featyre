@@ -6,8 +6,7 @@ class Feature < ActiveRecord::Base
  	
  	#Attributes
  	accepts_nested_attributes_for :feature_users
- 	attr_accessible :user_id, :text, :title, :tag_list, :url, :description,  
-  :collaborator_ids, :collaborators, :collaborator_list, :company
+ 	attr_accessible :user_id, :text, :title, :tag_list, :url, :description, :collaborators, :collaborator_list, :company, :subtitle
   attr_accessor :temp_collaborator
 
  	#Scopes
@@ -16,7 +15,7 @@ class Feature < ActiveRecord::Base
   #Methods
 
   #An array of user objects that are collaborators
-  def collaborators_list()
+  def collaborator_list()
   	collaborators = self.collaborators.to_a
   end
 

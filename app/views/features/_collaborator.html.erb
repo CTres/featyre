@@ -1,4 +1,19 @@
 <legend> Collaborators </legend>
+  <div id="collaborators">
+	    <%= link_to feature.collaborator.username, user_path(user) %>
+      <br>
+  </div>
+  <br>
+<%= simple_form_for(@feature, :url => add_collaborator_path, :html => { :class => "form-vertical"}) do |f| %>
+	 <%= f.input :temp_collaborator, :wrapper => :prepend, :label => false, :hint => "email or github username" do %>
+    <%= content_tag :span, "@", :class => "add-on" %>
+    <%= f.input_field :temp_collaborator %>
+  <% end %>
+	<%= f.button :submit, :value => 'Add Collaborator' %>
+	<% end %>
+
+
+<!-- <legend> Collaborators </legend>
 <div class="well">
 	<% @feature.collaborators.each_with_index do |c, index| %>
 		<ul>
@@ -10,13 +25,4 @@
 			</b> </span> </ul>
 
 	<% end %>
-</div>
-
-<%= simple_form_for(@feature, :url => add_collaborator_path, :html => { :class => "form-vertical"}) do |f| %>
-	 <%= f.input :temp_collaborator, :wrapper => :prepend, :label => false, :hint => "email or github username" do %>
-    <%= content_tag :span, "@", :class => "add-on" %>
-    <%= f.input_field :temp_collaborator %>
-  <% end %>
-  <br>
-	<%= f.button :submit, :value => 'Add Collaborator' %>
-	<% end %>
+</div> -->

@@ -6,6 +6,12 @@ class FeaturesController < ApplicationController
   autocomplete :tag, :name, :class_name => 'ActsAsTaggableOn::Tag'
 
   #Methods 
+
+  def new
+    @feature = @user.owned_features.new
+    @feature.collaborators.build
+  end
+
   def index
     if params[:query]
     @filters = params[:query].split
@@ -23,11 +29,6 @@ class FeaturesController < ApplicationController
     @feature = Feature.find(params[:id])
   end
 
-  def new
-    @feature = @user.owned_features.new
-    @feature.collaborators.build
-  end
-
   def edit
     @feature = Feature.find(params[:id])
   end
@@ -36,7 +37,7 @@ class FeaturesController < ApplicationController
     @feature = @user.owned_features.new(params[:feature])
     @feature.collaborators << @user
     if @feature.save
-      redirect_to features_path, notice: "Feature was successfully created."
+      redirect_to edit_feature_path(@feature)
     else
       render "new"
     end

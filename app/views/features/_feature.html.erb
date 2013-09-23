@@ -6,8 +6,7 @@
 	<%=link_to feature.user.username, user_path(feature.user) %> shipped <%= link_to feature.title, feature %>
 	</div>
   <div id="details">
-
-    <%= feature.text %> 
+    <%= feature.subtitle %> 
   </div>
     <% feature.tag_list.each do |f|%>
     <div class="label label-info"> <%=link_to f, features_path(query: f), id: 'nolink' %> </div> 
