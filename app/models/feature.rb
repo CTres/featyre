@@ -1,4 +1,6 @@
 class Feature < ActiveRecord::Base
+  #Validations
+  validates :title, :tag_list, :subtitle, presence: true
 	#Associations
   belongs_to :user
   has_many :feature_users

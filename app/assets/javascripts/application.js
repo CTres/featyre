@@ -13,7 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
-//= require medium.editor
+//= require medium
 //= require jquery.autosize
-//= require jquery.divPlaceholder
 //= require_tree .

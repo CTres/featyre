@@ -6,10 +6,11 @@
         <%= f.input :subtitle, input_html: {class: "span7"}, placeholder: "subtitle", label: false, as: :text %>
         <%= f.input :tag_list, input_html: {class: "span7"}, placeholder: "tags, i.e python, machine learning", label: false, as: :text%>
         <%= f.input :text, as: :hidden%>
-        <div class="feature_body editable" id="feature_body" data-placeholder='Enter your feature'> <%= @feature.text.html_safe %>
+        <div class="feature_body editable" id="editor"> 
+        <%= @feature.text.html_safe %>
         </div>
         </div>
-        <div class="span3" >
+        <div class="span3" id="sidebar" >
         <%= f.button :submit, "save"%>
     <% end %>
     <div class="collaborators">
