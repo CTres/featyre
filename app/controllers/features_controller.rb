@@ -42,7 +42,7 @@ class FeaturesController < ApplicationController
     respond_to do |format|
       if @feature.save
         format.html { redirect_to edit_feature_path(@feature) }
-        format.js {}
+        format.js {redirect_to edit_feature_path(@feature) }
       else
         render "new"
       end
