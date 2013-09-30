@@ -16,3 +16,27 @@
 //= require medium
 //= require jquery.autosize
 //= require_tree .
+
+function save_to_form() {
+	var content = $('#editor').html();
+      $("input[id=feature_text]").val(content);
+      };
+
+$(document).ready(function(){
+	$("#feature_title, #feature_subtitle, #feature_tag_list, #feature_text").autosize();
+  var timeout;
+  $('.editable, #feature_title, #feature_subtitle, #feature_tag_list').on('keyup paste', function () {
+    clearTimeout(timeout);
+    save_to_form();
+    $('.status').html('saving...');
+    timeout = setTimeout("$('form[data-remote]').submit();", 3000);
+  });
+});
+
+$(document).ready(function(){
+var editor = new Medium({
+element: document.getElementById('editor'), 
+mode: 'rich',
+placeholder: 'write about your shipped feature'
+});
+});

@@ -19,7 +19,9 @@ class FeaturesController < ApplicationController
     else
     @features= Feature.all
     end
+
     if user_signed_in?
+    @myfeatures = @user.owned_features
     @feature = @user.owned_features.new
     @feature.collaborators.build
     end
@@ -36,20 +38,28 @@ class FeaturesController < ApplicationController
   def create
     @feature = @user.owned_features.new(params[:feature])
     @feature.collaborators << @user
-    if @feature.save
-      redirect_to edit_feature_path(@feature)
-    else
-      render "new"
+
+    respond_to do |format|
+      if @feature.save
+        format.html { redirect_to edit_feature_path(@feature) }
+        format.js {}
+      else
+        render "new"
+      end
     end
   end
 
   def update
     @feature = @user.owned_features.find(params[:id])
-    if @feature.update_attributes(params[:feature])
-      redirect_to @feature, notice: 'Feature was successfully updated.'
-    else
-      render action: "edit" 
+
+    respond_to do |format|
+      if @feature.update_attributes(params[:feature])
+        format.html { redirect_to @feature, notice: 'Feature was successfully updated.' }
+        format.js {}
+      else
+        render action: "edit" 
       end
+    end
   end
 
   def destroy

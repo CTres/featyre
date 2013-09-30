@@ -20,12 +20,8 @@
   		</div>
   	</div> 
   	<div class="span4 offset1">
-  		<div id="unpublished">
-  			<div id="feature-add">
-  				<%= render 'quick_add' if user_signed_in? %>
+  			<%= render @myfeatures.reverse if user_signed_in? %>
   			</div>
-  		</div>
-  	</div>
   </div>
 </div>
 

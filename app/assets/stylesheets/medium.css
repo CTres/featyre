@@ -3,7 +3,7 @@
     }
 .Medium,
 .Medium *{
-    min-height: 100px;
+    min-height: 1px;
     outline: none;
     resize: none;
     zoom: 1;

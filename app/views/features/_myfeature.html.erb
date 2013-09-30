@@ -1,0 +1,31 @@
+<div class="feature" draggable="true">
+  <% if myfeature.company %>
+    @<%=myfeature.company %>
+    <% end %>
+  <div id="title" display="inline-block">
+  <%=link_to myfeature.user.username, user_path(feature.user) %> shipped <%= link_to myfeature.title, myfeature %>
+  </div>
+  <div id="details">
+    <%= myfeature.subtitle %> 
+  </div>
+    <% myfeature.tag_list.each do |f|%>
+    <div class="label label-info"> <%=link_to f, features_path(query: f), id: 'nolink' %> </div> 
+    <% end %>
+</div>
+
+
+
+<!-- <h4 class="title">  </h4>
+<p>
+  <ul class="unstyled">
+<li> @ <%= feature.company %> </li>
+<li> description: <%= feature.description %> </li>
+<li> built with: <%= feature.tag_list %>     </li>
+<span>
+
+  <% unless feature.collaborators.nil? %>
+   <%= feature.collaborators.map(&:username).join(', ') %>
+  <% end %>
+</span>
+<br>
+</p> -->
