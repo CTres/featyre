@@ -1,0 +1,14 @@
+<%= link_to(myfeature, :anchor => 'myfeature')  do %>
+  <div class="myfeature well" draggable="true">
+    <div id="mytitle" display="inline-block">
+    <%= myfeature.title %>
+    </div>
+    <div id="mydetails">
+    <%= myfeature.created_at.strftime("%B %d, %Y") %>
+	<br>
+      <%= myfeature.collaborators.map(&:name).join(", ") %>
+          </div>
+  </div>
+<% end %>
+
+

@@ -1,0 +1,19 @@
+
+
+.sidebar {
+	border-style: solid;
+	border-width: 1px;
+	border-color: gray;
+}
+.collaborators {
+	display: none;
+	font-weight: bold;
+ 	color: #5bb75b;
+}
+#feature_temp_collaborator{
+	font-size: 12px;
+}
+#collaborator-button {
+	text-align: center;
+}
+/* Features show adds simple_form changes*/

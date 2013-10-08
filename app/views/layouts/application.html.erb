@@ -2,7 +2,6 @@
 <html lang="en">
   <head>
         <%= render "layouts/responsive" %>
-        <%= javascript_include_tag "application" %>
   </head>
 
   <body>
@@ -11,20 +10,6 @@
       <%= bootstrap_flash %>
       <%= yield %> 
     </div>
-  </body>
-    <script> $(document).ready(function(){
-      $("#feature_title, #feature_subtitle, #feature_tag_list, #feature_text").autosize();
-      });
-     </script>
-
-     <script>var editor = new MediumEditor('.editable', {
-      diffLeft: 75});
-     </script>
-
-     <script type="text/javascript"> 
-     $('.feature_body').blur(function(){
-      var content = $('.feature_body').html();
-      $("input[id=feature_text]").val(content);
-      });
-     </script>
+  </body>     
+  <%= javascript_include_tag "application" %>
 </html>

@@ -3,7 +3,7 @@
     @<%=feature.company %>
     <% end %>
   <div id="title" display="inline-block">
-	<%=link_to feature.user.username, user_path(feature.user) %> shipped <%= link_to feature.title, feature %>
+	<%=link_to feature.user.name, user_path(feature.user) %> shipped <%= link_to feature.title, feature %>
 	</div>
   <div id="details">
     <%= feature.subtitle %> 

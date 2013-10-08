@@ -1,14 +1,19 @@
 class Feature < ActiveRecord::Base
+
 	#Associations
   belongs_to :user
   has_many :feature_users
-  has_many :collaborators, class_name: 'User', through: :feature_users, source: :user
+  has_many :collaborators, class_name: 'User', through: :feature_users, source: :user, select: 'users.*, feature_users.role as role'
  	
  	#Attributes
  	accepts_nested_attributes_for :feature_users
- 	attr_accessible :user_id, :text, :title, :tag_list, :url, :description, :collaborators, :collaborator_list, :company, :subtitle
+ 	attr_accessible :feature_users_attributes, :user_id, :text, :title, :tag_list, :url, :description, :collaborators, :collaborator_list, :company, :subtitle
   attr_accessor :temp_collaborator
 
+  #Validations
+  
+  #validates :title, :tag_list, :subtitle, presence: true
+  
  	#Scopes
   acts_as_taggable_on :tags
 
@@ -24,15 +29,29 @@ class Feature < ActiveRecord::Base
       puts collaborator.username
     end
   end
-  def insert_collaborator(username, token)
-    #check to see if the collaborator is already added
-    unless self.collaborators.include?(User.find_by_username(username))
-      unless User.find_by_username(username).nil?
-        self.collaborators << User.find_by_username(username)
+
+  def insert_collaborator(string, token)
+    #check if input is an email
+    if string.match(/\b[A-Z0-9._%a-z\-]+@(?:[A-Z0-9a-z\-]+\.)+[A-Za-z]{2,4}\z/)
+      #check to see if user is in database with email
+      if User.find_by_email(string).nil?
+        #!!!!!add check to see if github has a user with that email before creating new user
+        #if no user in db with email, create user
+        user = User.from_email(string)
+        self.collaborators << user
       else
-      g = Github.new(token)
-      github_user = g.find_by_username(username)
-      self.collaborators << g.create_user_by_username(github_user)
+        self.collaborators << User.find_by_email(string)
+      end
+    else
+    #check to see if the collaborator is already added
+      unless self.collaborators.include?(User.find_by_username(string))
+        unless User.find_by_username(string).nil?
+          self.collaborators << User.find_by_username(string)
+        else
+        g = Github.new(token)
+        github_user = g.find_by_username(string)
+        self.collaborators << g.create_user_by_username(github_user)
+        end
       end
     end
   end
