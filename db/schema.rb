@@ -11,12 +11,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130919145711) do
+ActiveRecord::Schema.define(:version => 20131005120002) do
 
   create_table "feature_users", :force => true do |t|
     t.integer  "user_id"
     t.integer  "feature_id"
     t.datetime "created_at"
+    t.string   "role"
   end
 
   create_table "features", :force => true do |t|
@@ -67,10 +68,16 @@ ActiveRecord::Schema.define(:version => 20130919145711) do
     t.string   "username"
     t.string   "provider"
     t.string   "uid"
-    t.string   "companyname"
+    t.string   "company"
+    t.string   "name"
+    t.string   "url"
+    t.string   "location"
+    t.string   "blog"
+    t.string   "avatar_url"
+    t.string   "hireable"
+    t.string   "gravatar_id"
   end
 
-  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
 end

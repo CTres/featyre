@@ -1,6 +1,5 @@
 class CreateFeatures < ActiveRecord::Migration
   def change
-  	drop_table :features
     create_table :features do |t|
       t.string :title
       t.text :text

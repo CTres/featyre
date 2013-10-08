@@ -13,9 +13,15 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
-//= require medium
+//= require medium-editor
 //= require jquery.autosize
 //= require_tree .
+
+
+$(document).ready(function(){
+  $('.collaborators').hide();
+  $('.collaborators').fadeIn(4000);
+})
 
 function save_to_form() {
 	var content = $('#editor').html();
@@ -23,21 +29,27 @@ function save_to_form() {
       }
 
 $(document).ready(function(){
-
 	$("#feature_title, #feature_subtitle, #feature_tag_list, #feature_text").autosize();
   var timeout;
   $('.editable, #feature_title, #feature_subtitle, #feature_tag_list').on('keyup paste', function () {
     clearTimeout(timeout);
     save_to_form();
     $('.status').html('saving...');
-    timeout = setTimeout("$('.new_feature, .edit_feature').submit(); ", 2500);
+    timeout = setTimeout("$('.new_feature, .edit_feature').submit(); ", 1500);
   });
 })
 
 $(document).ready(function(){
-var editor = new Medium({
-element: document.getElementById('editor'), 
-mode: 'rich',
-placeholder: 'write about your shipped feature'
-});
+  var editor = new MediumEditor('.editable', {
+    anchorInputPlaceholder: 'Write your Feature',
+    diffLeft: 75});
 })
+
+// $(document).ready(function(){
+// var editor = new Medium({
+// element: document.getElementById('editor'), 
+// mode: 'rich',
+// placeholder: 'write about your shipped feature'
+// });
+// })
+

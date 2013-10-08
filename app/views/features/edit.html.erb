@@ -1,41 +1,49 @@
 <div class="container">
       <div class="status"></div>
   <div class="row" id="feature-row">
-    <div class="span8 offset1 feature-inner">
-      <%= simple_form_for(@feature, remote: true) do |f| %>
-        <%= f.input :title, input_html: {class: "span7"}, placeholder: "add your title", label: false, as: :text%>
-        <%= f.input :subtitle, input_html: {class: "span7"}, placeholder: "subtitle", label: false, as: :text %>
-        <%= f.input :tag_list, input_html: {class: "span7"}, placeholder: "tags, i.e python, machine learning", label: false, as: :text%>
-        <%= f.input :text, as: :hidden%>
-        <div class="feature_body editable" id="editor"> 
-        <%= @feature.text.html_safe %>
+    <div class="span8 offset1">
+      <div class="feature-inner">
+        <%= simple_form_for(@feature, remote: true) do |f| %>
+          <%= f.input :title, input_html: {class: "span8"}, placeholder: "add your title", label: false, as: :text%>
+          <%= f.input :subtitle, input_html: {class: "span8"}, placeholder: "subtitle", label: false, as: :text %>
+          <%= f.input :tag_list, input_html: {class: "span8"}, placeholder: "tags, i.e python, machine learning", label: false, as: :text%>
+          <%= f.input :text, as: :hidden%>
+          <div class="feature_body editable" id="editor"> 
+          <%= @feature.text.html_safe %>
+          </div>
         </div>
-        </div>
+      </div>
   
 
     <% end %>
-         <div class="span3" id="sidebar" >
-    <div class="collaborators">
-    <legend> Collaborators</legend>
-    <% @feature.collaborators.each_with_index do |c, index| %>
-      <li>
-        <span id="collaborator-tag">        
-        <%=link_to c.username%>
-        <% if index > 0 %>
-          <%= link_to glyph(:remove),remove_collaborator_path(:temp_collaborator => c.username), class: 'remove_icon' %> 
+    <div class="span2 offset1">
+      <div class="collaborators">
+      <legend align="center">Team</legend>
+      <ul>
+        <% @feature.collaborators.each_with_index do |c, index| %>
+          <li> 
+            <span id="collaborator-tag <%= "#{index}" %>">    
+            <%= c.role %>    
+            <%=link_to c.name, c%>
+            <% if index > 0 && user_owner %>
+              <%= link_to glyph(:remove),remove_collaborator_path(:temp_collaborator => c.username), class: 'remove_icon' %> 
+            <% end %>
+            </span>
           </li>
+          <br>
         <% end %>
-        </span>
+      </ul>
+    
+    <br>
+    <hr>
+    <% if user_owner %>
+    <%= simple_form_for(@feature, :url => add_collaborator_path, remote: true, :html => { :class => "form-inline" }) do |f| %>
+      <%= f.input_field :temp_collaborator, :label => false, :placeholder => "email or github username", :input_html => { :size => 40}%>
+      <%= f.button :submit, class: "btn-success", :value => 'Add'%>
+    <% end %>
     <% end %>
     </div>
-    <br>
-    <%= simple_form_for(@feature, :url => add_collaborator_path, :html => { :class => "form-vertical"}) do |f| %>
-      <%= f.input :temp_collaborator, :wrapper => :prepend, :label => false, :hint => "email or github username" do %>
-        <%= content_tag :span, "@", :class => "add-on" %>
-        <%= f.input_field :temp_collaborator %>
-      <% end %>
-      <%= f.button :submit, :value => 'Add Collaborator' %>
-    <% end %>
     </div>
   </div>
-</div>
+  </div>
+

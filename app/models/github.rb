@@ -10,7 +10,10 @@ class Github
 
 	def find_by_name(name)
 		@client.search_users(name)
+	end
 
+	def find_by_email(email)
+		client= @client.user(email)
 	end
 
 	def all_users()
@@ -18,7 +21,6 @@ class Github
 	end
 
 	def create_user_by_username(hash = {})
-		puts hash
 		user = User.from_github(hash)
 		if user.persisted?
 			user

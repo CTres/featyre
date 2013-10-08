@@ -22,8 +22,6 @@ class FeaturesController < ApplicationController
 
     if user_signed_in?
     @myfeatures = @user.owned_features
-    @feature = @user.owned_features.new
-    @feature.collaborators.build
     end
   end
 
@@ -76,15 +74,23 @@ class FeaturesController < ApplicationController
 
   def add_collaborator
     @feature = Feature.find(params[:id])
-    username = params[:feature][:temp_collaborator]
-    @feature.insert_collaborator(username, session['token'])
-    redirect_to :back
+    name = params[:feature][:temp_collaborator]
+
+    respond_to do |format|
+      if @feature.insert_collaborator(name, session['token'])
+        format.html { redirect_to :back }
+        format.js {}
+      end
+    end
   end
 
   def remove_collaborator
-    puts params
     @feature = Feature.find(params[:id])
-    @feature.delete_collaborator(params[:temp_collaborator])
-    redirect_to :back
+    respond_to do |format|
+    if @feature.delete_collaborator(params[:temp_collaborator])
+      format.html { redirect_to :back }
+      format.js {}
+    end
+  end
   end
 end
