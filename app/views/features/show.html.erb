@@ -20,17 +20,7 @@
     <div class="span2 offset1">
       <div class="collaborators">
         <legend align="center">Team</legend>
-        <ul>
-          <% @feature.collaborators.each_with_index do |c, index| %>
-            <li> 
-              <span id="collaborator-tag">
-              <%= c.role %>        
-              <%=link_to c.name, c%>
-              </span>
-            </li>
-            <br>
-          <% end %>
-        </ul>
+        <%= render partial: 'users/user', collection: @collaborators, :locals => {:show => (true)} %>
       </div>
     </div>
   </div>

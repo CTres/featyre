@@ -5,9 +5,9 @@
 	border-width: 1px;
 	border-color: gray;
 }
-.collaborators {
-	display: none;
+#collaborator-role {
 	font-weight: bold;
+	text-transform: uppercase;
  	color: #5bb75b;
 }
 #feature_temp_collaborator{

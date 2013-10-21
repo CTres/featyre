@@ -19,26 +19,13 @@
     <div class="span2 offset1">
       <div class="collaborators">
       <legend align="center">Team</legend>
-      <ul>
-        <% @feature.collaborators.each_with_index do |c, index| %>
-          <li> 
-            <span id="collaborator-tag <%= "#{index}" %>">    
-            <%= c.role %>    
-            <%=link_to c.name, c%>
-            <% if index > 0 && user_owner %>
-              <%= link_to glyph(:remove),remove_collaborator_path(:temp_collaborator => c.username), class: 'remove_icon' %> 
-            <% end %>
-            </span>
-          </li>
-          <br>
-        <% end %>
-      </ul>
-    
-    <br>
-    <hr>
+      <%= render partial: 'users/user', collection: @collaborators, :locals => {:show => (false)} %>
+      <hr>
+      <br>
     <% if user_owner %>
-    <%= simple_form_for(@feature, :url => add_collaborator_path, remote: true, :html => { :class => "form-inline" }) do |f| %>
+    <%= simple_form_for(@feature, :url => add_collaborator_path, :html => { :class => "form-vertical" }) do |f| %>
       <%= f.input_field :temp_collaborator, :label => false, :placeholder => "email or github username", :input_html => { :size => 40}%>
+      <%= f.input_field :temp_role, :label => false, :placeholder => "role", :input_html => { :size => 40}%>
       <%= f.button :submit, class: "btn-success", :value => 'Add'%>
     <% end %>
     <% end %>

@@ -1,0 +1,18 @@
+<ul>
+  <li>
+		<div id="collaborator-tag <%= "#{user.id}" %>">
+			<div id="collaborator-role">
+				<%= user.role %>
+			</div>
+			<div id="collaborator-name">
+				<%= link_to user.name, user %>
+				<% if user_counter > 0 && user_owner && show == false%>
+					<%= link_to glyph(:remove),remove_collaborator_path(:temp_collaborator => user.username), class: 'remove_icon' %> 
+				<% end %>
+			</div>
+		</div>
+	</li>
+</ul>
+
+
+

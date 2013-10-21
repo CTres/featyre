@@ -1,4 +1,4 @@
-$('<span> <li> <%=link_to @feature.collaborators.last.name, @feature.collaborators.last %> <%= link_to glyph(:remove), remove_collaborator_path(temp_collaborator: @feature.collaborators.last.username), class: "remove_icon", remote: true %> </li> </span>').appendTo('.collaborators ul');
+$(<%= render partial: 'users/user', :object => @collaborator, :locals => {:show => (false)} %>).appendTo('.collaborators ul');
 
 
 

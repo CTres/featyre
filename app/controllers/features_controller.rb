@@ -9,7 +9,6 @@ class FeaturesController < ApplicationController
 
   def new
     @feature = @user.owned_features.new
-    @feature.collaborators.build
   end
 
   def index
@@ -27,10 +26,12 @@ class FeaturesController < ApplicationController
 
   def show
     @feature = Feature.find(params[:id])
+    @collaborators = @feature.collaborators
   end
 
   def edit
     @feature = Feature.find(params[:id])
+    @collaborators = @feature.collaborators
   end
 
   def create
@@ -73,11 +74,15 @@ class FeaturesController < ApplicationController
   end
 
   def add_collaborator
+    #variables
     @feature = Feature.find(params[:id])
     name = params[:feature][:temp_collaborator]
 
-    respond_to do |format|
-      if @feature.insert_collaborator(name, session['token'])
+    #find the collaborator and return the id so we can make the join model record (feels like an ugly hack :)
+    id = @feature.find_or_create_collaborator(name, session['token'])
+    @feature.feature_users.create!(user_id: id, role: params[:feature][:temp_role] )
+    unless @collaborator.nil?
+      respond_to do |format|
         format.html { redirect_to :back }
         format.js {}
       end

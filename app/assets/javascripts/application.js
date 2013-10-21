@@ -19,8 +19,8 @@
 
 
 $(document).ready(function(){
-  $('.collaborators').hide();
-  $('.collaborators').fadeIn(4000);
+  // $('.collaborators').hide();
+  // $('.collaborators').fadeIn(4000);
 })
 
 function save_to_form() {

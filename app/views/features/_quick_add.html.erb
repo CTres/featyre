@@ -1,9 +1,0 @@
-<legend> Quick Add a Feature </legend>
-<div class="well id="quick"">
-	<%= simple_form_for(@feature) do |f| %>
-		<%= f.input :title, label: false, placeholder: "Title"%>
-		<%= f.input :tag_list, label: false, placeholder: "Languages, Frameworks etc.." %>
-		<%= f.input :text, label: false, placeholder: "Short Description", input_html: {size: '30'} %>
-		<%= f.button :submit  %>
-	<% end %>
-</div>
