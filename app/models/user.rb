@@ -1,9 +1,10 @@
 class User < ActiveRecord::Base
   #Associations
-  has_many :features
-  has_many :feature_users, dependent: :destroy
   has_many :owned_features, class_name: 'Feature', dependent: :destroy
+  has_many :feature_users, dependent: :destroy
+  has_many :collaborated_features, class_name: 'Feature', through: :feature_users, source: :feature
   accepts_nested_attributes_for :feature_users
+
 
   #Validations
   validates_presence_of :username
@@ -15,7 +16,7 @@ class User < ActiveRecord::Base
   
   #Attributes
   attr_accessible :feature_users_attributes, :email, :password, :password_confirmation, :remember_me, :username, :name, :company, :collaborator_id
-  
+  attr_accessor :temp_role
   # Methods
   # this is used to add a collaborator, not to sign in a github user through omniauth. that is done below.
   def self.from_github(auth)

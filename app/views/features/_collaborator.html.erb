@@ -1,8 +1,16 @@
+
 <ul>
   <li>
 		<div id="collaborator-tag <%= "#{user.id}" %>">
 			<div id="collaborator-role">
-				<%= user.role %>
+				<% if user.role.blank? %>
+				<%= %>
+  				<%= simple_form_for(user, url: update_feature_user_path(user_id: user.id), method: :post, :html => { :class => "form-inline" }) do |f| %>
+  				  <%= f.input :temp_role, placeholder: 'role', label: false %>
+            <% end %>
+				<% else %>
+        <%= user.role %>
+				<% end %>
 			</div>
 			<div id="collaborator-name">
 				<%= link_to user.name, user %>

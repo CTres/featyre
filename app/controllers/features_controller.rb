@@ -36,10 +36,10 @@ class FeaturesController < ApplicationController
 
   def create
     @feature = @user.owned_features.new(params[:feature])
-    @feature.collaborators << @user
-
     respond_to do |format|
       if @feature.save
+        #add the original poster as a feature user. 
+        @feature.feature_users.create!(user_id: @user.id)
         format.html { redirect_to edit_feature_path(@feature) }
         format.js {redirect_to edit_feature_path(@feature) }
       else
@@ -50,7 +50,6 @@ class FeaturesController < ApplicationController
 
   def update
     @feature = @user.owned_features.find(params[:id])
-
     respond_to do |format|
       if @feature.update_attributes(params[:feature])
         format.html { redirect_to @feature, notice: 'Feature was successfully updated.' }
@@ -81,21 +80,19 @@ class FeaturesController < ApplicationController
     #find the collaborator and return the id so we can make the join model record (feels like an ugly hack :)
     id = @feature.find_or_create_collaborator(name, session['token'])
     @feature.feature_users.create!(user_id: id, role: params[:feature][:temp_role] )
-    unless @collaborator.nil?
       respond_to do |format|
         format.html { redirect_to :back }
         format.js {}
-      end
     end
   end
 
   def remove_collaborator
     @feature = Feature.find(params[:id])
     respond_to do |format|
-    if @feature.delete_collaborator(params[:temp_collaborator])
-      format.html { redirect_to :back }
-      format.js {}
+      if @feature.delete_collaborator(params[:temp_collaborator])
+        format.html { redirect_to :back }
+        format.js {}
+      end
     end
-  end
   end
 end

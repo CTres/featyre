@@ -45,6 +45,7 @@ $(document).ready(function(){
     diffLeft: 75});
 })
 
+
 // $(document).ready(function(){
 // var editor = new Medium({
 // element: document.getElementById('editor'), 
