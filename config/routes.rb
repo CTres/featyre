@@ -12,7 +12,9 @@ Blog::Application.routes.draw do
   
   resources :features do
     get :autocomplete_tag_name, :on => :collection
-
+    resources :values do
+    end
   end
       resources :users 
+          
 end

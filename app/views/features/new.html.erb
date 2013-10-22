@@ -5,7 +5,12 @@
       <div class="feature-inner">
         <%= simple_form_for(@feature) do |f| %>
           <%= f.input :title, input_html: {class: "span8"}, placeholder: "add your title", label: false, as: :text%>
-          <%= f.input :subtitle, input_html: {class: "span8"}, placeholder: "subtitle", label: false, as: :text %>
+          <%= f.simple_fields_for :values do |d| %>
+          <%= d.input_field :persona, label: false, placeholder: "Persona"%>
+          <%= d.input_field :change, collection: [ "increase", "decrease"], default: "increases"%>
+          <%= d.input_field :metric, label: false, placeholder: "metric"%>
+          <%= d.input_field :quantity, label: false, placeholder: "by amount"%>
+          <% end %>
           <%= f.input :tag_list, input_html: {class: "span8"}, placeholder: "tags, i.e python, machine learning", label: false, as: :text%>
           <%= f.input :text, as: :hidden%>
         <% end %>
