@@ -31,12 +31,21 @@ function save_to_form() {
 $(document).ready(function(){
 	$("#feature_title, #feature_subtitle, #feature_tag_list, #feature_text").autosize();
   var timeout;
-  $('.editable, #feature_title, #feature_subtitle, #feature_tag_list').on('keyup paste', function () {
+  $('.editable, #feature_title, #feature_subtitle, #feature_company, #feature_tag_list').on('keyup paste', function () {
     clearTimeout(timeout);
     save_to_form();
     $('.status').html('saving...');
     timeout = setTimeout("$('.new_feature, .edit_feature').submit(); ", 1500);
   });
+})
+
+$(document).ready(function(){
+  var timer;
+  $('.role').on('keyup paste', function () {
+  clearTimeout(timer);
+  $('.status').html('saving...');
+  timeout = setTimeout("$('.edit_user').submit(); ", 1500);
+    });
 })
 
 $(document).ready(function(){

@@ -1,26 +1,17 @@
 
-<ul>
-  <li>
-		<div id="collaborator-tag <%= "#{user.id}" %>">
-			<div id="collaborator-role">
-				<% if user.role.blank? %>
-				<%= %>
-  				<%= simple_form_for(user, url: update_feature_user_path(user_id: user.id), method: :post, :html => { :class => "form-inline" }) do |f| %>
-  				  <%= f.input :temp_role, placeholder: 'role', label: false %>
-            <% end %>
-				<% else %>
-        <%= user.role %>
-				<% end %>
-			</div>
-			<div id="collaborator-name">
-				<%= link_to user.name, user %>
-				<% if user_counter > 0 && user_owner && show == false%>
-					<%= link_to glyph(:remove),remove_collaborator_path(:temp_collaborator => user.username), class: 'remove_icon' %> 
-				<% end %>
-			</div>
-		</div>
-	</li>
-</ul>
+<div class="collaborator-tag" id="<%= "#{user.id}" %>">
+	<div id="collaborator-role">
+			<%= simple_form_for(user, url: update_feature_user_path(user_id: user.id), method: :post, remote: true, :defaults => { :input_html => { :class => "role" } }) do |f| %>
+			  <%= f.input_field :role, placeholder: 'role', label: false %>
+        <% end %>
+	</div>
+	<div id="collaborator-name">
+		<%= link_to user.name, user %>
+		<% if user_counter > 0 && user_owner && show == false%>
+			<%= link_to glyph(:remove),remove_collaborator_path(:temp_collaborator => user.username), class: 'remove_icon' %> 
+		<% end %>
+	</div>
+</div>
 
 
 

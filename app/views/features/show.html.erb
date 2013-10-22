@@ -9,9 +9,13 @@
         <div id="show_feature_subtitle">
           <%= @feature.subtitle %>
         </div>
-    	  <div class="show_feature" id="feature_tag_list">
+        <div class="show_feature" id="show_feature_company">
+         @ <%=@feature.company %>
+        </div>
+    	  <div class="show_feature" id="show_feature_tag_list">
          <%= @feature.tag_list %>
         </div>
+        <hr>
         <div class="feature_body">
     	    <%= @feature.text.html_safe %>
         </div>
