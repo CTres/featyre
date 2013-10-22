@@ -1,4 +1,5 @@
 <div class="container">
+<%= button_to "Publish", feature_path(@feature), class: "editbar btn btn-success", method: "get" %>
       <div class="status"></div>
   <div class="row" id="feature-row">
     <div class="span8 offset1">
@@ -9,25 +10,17 @@
           <%= f.input :company, input_html: {class: "span8"}, placeholder: "company", label: false%>
           <%= f.input :tag_list, input_html: {class: "span8"}, placeholder: "Tags, i.e python, machineLearning, html", label: false, as: :text%>
           <%= f.input :text, as: :hidden%>
-          <hr>
           <div class="feature_body editable" id="editor"> 
-
-          <%= @feature.text.html_safe %>
+            <%= @feature.text.html_safe %>
           </div>
-          <br>
-          <hr>
           <%= f.file_field :image, as: :hidden %>
         </div>
       </div>
-  
-
     <% end %>
     <div class="span2 offset1">
       <div class="collaborators">
       <legend align="center">Team</legend>
       <%= render partial: 'features/collaborator', collection: @collaborators, as: :user, :locals => {:show => (false)} %>
-      <hr>
-      <br>
     <% if user_owner %>
     <legend align="center">Add Member</legend>
     <%= simple_form_for(@feature, :url => add_collaborator_path, :html => { :class => "form-vertical" }) do |f| %>

@@ -1,0 +1,10 @@
+<%= link_to(user, :anchor => 'collaborator-tag')  do %>
+  <div class="collaborator-tag" id="<%= "#{user.id}" %>">
+  	<div id="user_role">
+  		<%= user.role %>
+  	</div>
+  	<div id="collaborator-name">
+  		<%= link_to user.name, user %>
+  	</div>
+  </div>
+<% end %>
