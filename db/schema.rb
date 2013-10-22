@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131005120002) do
+ActiveRecord::Schema.define(:version => 20131021095425) do
 
   create_table "feature_users", :force => true do |t|
     t.integer  "user_id"
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(:version => 20131005120002) do
     t.string   "description"
     t.string   "company"
     t.string   "subtitle"
+    t.string   "image"
   end
 
   add_index "features", ["user_id"], :name => "index_features_on_user_id"

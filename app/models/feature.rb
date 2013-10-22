@@ -1,4 +1,5 @@
 class Feature < ActiveRecord::Base
+  after_initialize :init
 
 	#Associations
   belongs_to :user
@@ -7,7 +8,7 @@ class Feature < ActiveRecord::Base
  	
  	#Attributes
  	accepts_nested_attributes_for :feature_users
- 	attr_accessible :feature_users_attributes, :user_id, :text, :title, :tag_list, :url, :description, :collaborators, :collaborator_list, :company, :subtitle
+ 	attr_accessible :feature_users_attributes, :user_id, :text, :title, :tag_list, :url, :description, :collaborators, :collaborator_list, :company, :subtitle, :image
   attr_accessor :temp_collaborator, :temp_role
 
   #Validations
@@ -16,6 +17,9 @@ class Feature < ActiveRecord::Base
   
  	#Scopes
   acts_as_taggable_on :tags
+
+  #Image Uploader
+  mount_uploader :image, ImageUploader
 
   #Methods
 
@@ -57,6 +61,10 @@ class Feature < ActiveRecord::Base
   def delete_collaborator(username)
    user = User.find_by_username(username)
    self.collaborators.delete(user)
+  end
+
+  def init
+    self.company ||= self.user.company
   end
 end
 	
