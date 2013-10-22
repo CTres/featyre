@@ -9,6 +9,7 @@ class FeaturesController < ApplicationController
 
   def new
     @feature = @user.owned_features.new
+    @value = @feature.values.new
   end
 
   def index
@@ -27,11 +28,13 @@ class FeaturesController < ApplicationController
   def show
     @feature = Feature.find(params[:id])
     @collaborators = @feature.collaborators
+    @value = Value.find_by_feature_id(params[:id])
   end
 
   def edit
     @feature = Feature.find(params[:id])
     @collaborators = @feature.collaborators
+    @value = Value.find_by_feature_id(params[:id])
   end
 
   def create

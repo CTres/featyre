@@ -4,11 +4,11 @@ class Feature < ActiveRecord::Base
 	#Associations
   belongs_to :user
   has_many :feature_users
+  has_many :values
   has_many :collaborators, class_name: 'User', through: :feature_users, source: :user, select: 'users.*, feature_users.role as role'
- 	
  	#Attributes
- 	accepts_nested_attributes_for :feature_users
- 	attr_accessible :feature_users_attributes, :user_id, :text, :title, :tag_list, :url, :description, :collaborators, :collaborator_list, :company, :subtitle, :image
+ 	accepts_nested_attributes_for :feature_users, :values
+ 	attr_accessible :feature_users_attributes, :values_attributes, :user_id, :text, :title, :tag_list, :url, :description, :collaborators, :collaborator_list, :company, :subtitle, :image
   attr_accessor :temp_collaborator, :temp_role
 
   #Validations

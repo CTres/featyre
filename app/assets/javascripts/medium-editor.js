@@ -67,7 +67,7 @@ function MediumEditor(elements, options) {
             excludedActions: [],
             firstHeader: 'h3',
             forcePlainText: true,
-            placeholder: 'Type your text',
+            placeholder: 'describe your feature, highlight text to style',
             secondHeader: 'h4'
         },
 
