@@ -13,3 +13,7 @@
  *= require_tree 
 
  */
+
+img {
+	border-radius: 5px;
+}

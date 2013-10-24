@@ -34,7 +34,10 @@
             </li>
           </ul>
           <ul id="user-links" class="navbar pull-right">
-            <b> <%= current_user.username %> </b>
+            <div class="user-links"> 
+              <%= image_tag current_user.avatar_url, size: "30x30"%>
+              <%= current_user.username %>
+            </div>
             <a class="btn-auth btn-github" a href="/users/logout" data-method="delete" rel="nofollow">logout</a>
           </ul>
         </div> <!-- navbar-content  -->

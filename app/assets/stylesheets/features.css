@@ -15,7 +15,7 @@
 }
 
 #feature_title {
-  font-family: sans-serif;
+  font-family: "freight-sans-pro",sans-serif;
   font-size: 52px;
   font-weight: bold;
   letter-spacing: -2px;
@@ -29,13 +29,35 @@
   outline: none;
 }
 
+#show_feature_title {
+  font-family: "freight-sans-pro",sans-serif;
+  font-size: 52px;
+  font-weight: bold;
+  letter-spacing: -2px;
+  height: auto;
+  line-height: 52px;
+  margin-bottom: 10px;
+  color: rgb(51, 51, 50); 
+  border: none;
+  resize: none;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0);
+  outline: none;
+}
+
+#value {
+  font-weight: normal;
+  font-family: "freight-sans-pro",sans-serif;
+  font-size: 18px;
+  color: #333332;
+}
+
 #feature_subtitle {
-  font-family: 'Times New Roman';
+  font-family: "freight-sans-pro",sans-serif;
   font-style: italic;
   font-weight: normal;
   font-size: 35px;
   line-height: 35px;
-  height:35px;
+  height: auto;
   margin: 0 0 0 0px;
   resize: none;
 	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0);
@@ -44,7 +66,7 @@
 }
 #feature_company {
   font-weight: normal;
-  font-family: 'Times New Roman';
+  font-family: "freight-sans-pro",sans-serif;
   font-size: 20px;
   line-height: 20px;
   height: 20px;
@@ -56,8 +78,9 @@
 }
 
 #feature_tag_list {
-  font-weight: bold;
-  font-family: 'Times New Roman';
+  font-weight: normal;
+  font-family: "freight-sans-pro",sans-serif;
+  color: #333332;
   font-size: 20px;
   line-height: 20px;
   height: 20px;
@@ -71,73 +94,29 @@
 .feature_body {
   outline: none;
 	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0);
-  font-family: "ff-tisa-web-pro";
-  font-size: 25px;
+  font-family: "ff-meta-serif-web-pro",serif;
+  color:#33332;
+  font-size: 21px;
   font-weight: normal;
-  line-height: 25px;
+  line-height: 31px;
   height: auto;
 	border: none;
   margin-top: 40px;
   outline: none;
 }
 
-/* Features show adds simple_form changes*/
-#show_feature_title {
-  word-wrap: break-word;
-  font-family: sans-serif;
-  padding: 0 0 20px;
-  font-size: 52px;
-  font-weight: bold;
-  height: auto;
-  line-height: 52px;
-  margin: 0 0 0 0px;
-  color: rgb(51, 51, 50); 
-  border: none;
-  resize: none;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0);
-  outline: none;
+.feature_body h3 {
+  font-size: 30px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  font-family: "freight-sans-pro",sans-serif;
 }
 
-#show_feature_subtitle {
-  font-family: 'Times New Roman';
-  font-style: italic;
-  font-weight: normal;
-  font-size: 35px;
-  line-height: 35px;
-  height:auto;
-  word-wrap: break-word;
-  margin: 0 0 0 0px;
-  padding: 0 0 20px;
-  resize: none;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0);
-  border: none;
-  outline: none;
-}
-
-#show_feature_company {
-  font-weight: bold;
-  font-family: 'Times New Roman';
-  font-size: 20px;
-  line-height: 20px;
-  height: 20px;
-  margin: 0 0 10px;
-  resize: none;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0);
-  border: none;
-  outline: none;
-}
-
-#show_feature_tag_list {
-  font-weight: normal;
-  font-family: 'Times New Roman';
-  font-size: 20px;
-  line-height: 20px;
-  height: 20px;
-  margin: 0 0 0 0px;
-  resize: none;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0);
-  border: none;
-  outline: none;
+.feature_body h4 {
+  font-size: 25px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  font-family: "freight-sans-pro",sans-serif;
 }
 
 .status{
@@ -164,8 +143,5 @@
   color: black;
 }
 
-#value {
-  font-weight: normal;
-  font-size: 16px;
-  color: #333332;
-}
+
+
