@@ -14,6 +14,8 @@ Blog::Application.routes.draw do
     get :autocomplete_tag_name, :on => :collection
     resources :values do
     end
+    resources :images do
+    end
   end
       resources :users 
           

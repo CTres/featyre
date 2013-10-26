@@ -2,7 +2,6 @@ class FeaturesController < ApplicationController
   #Filters
   before_filter :find_user
   before_filter :authenticate_user!, :except => :index
-
   autocomplete :tag, :name, :class_name => 'ActsAsTaggableOn::Tag'
 
   #Methods 
@@ -77,9 +76,10 @@ class FeaturesController < ApplicationController
 
   def add_collaborator
     #variables
+    
     @feature = Feature.find(params[:id])
     name = params[:feature][:temp_collaborator]
-
+    begin
     #find the collaborator and return the id so we can make the join model record (feels like an ugly hack :)
     id = @feature.find_or_create_collaborator(name, session['token'])
     @feature.feature_users.create!(user_id: id, role: params[:feature][:temp_role] )
@@ -87,6 +87,9 @@ class FeaturesController < ApplicationController
         format.html { redirect_to :back }
         format.js {}
     end
+  rescue
+    redirect_to :back, notice: 'no such user found at github'
+  end
   end
 
   def remove_collaborator

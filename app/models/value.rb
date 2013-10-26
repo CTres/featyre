@@ -7,6 +7,7 @@ class Value < ActiveRecord::Base
 
   #Validations
 
+  
 	def impact
 		if self.quantity.blank?
 		@impact = "#{self.persona} #{self.change} #{self.metric}"

@@ -9,7 +9,7 @@
   <%= f.input :tag_list, input_html: {class: "span8"}, placeholder: "tags, i.e python, machine learning", label: false, as: :text%>
   <%= f.input :company, input_html: {class: "span8"}, placeholder: "@Company", label: false, as: :text%>
   <%= f.input :text, as: :hidden%>
-<% end %>
+  <% end %>
   <hr>
   <div class="feature_body editable" id="editor"> 
     <%= @feature.text.html_safe %>

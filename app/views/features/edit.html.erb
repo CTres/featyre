@@ -1,7 +1,7 @@
 <div class="container">
 <!-- publish button -->
-<%= button_to "Publish", feature_path(@feature), class: "editbar btn btn-success", method: "get" %>
-      <div class="status"></div>
+  <%= button_to "Publish", feature_path(@feature), class: "editbar btn btn-success", method: "get" %>
+  <div class="status"></div>
   <div class="row" id="feature-row">
     <div class="span8 offset1">
       <div class="feature-inner">
@@ -9,23 +9,26 @@
         <%= render partial: 'feature-editor' %>
       </div>
     </div> 
-
     <!-- collaborators column -->
     <div class="span2 offset1">
       <div class="collaborators">
-      <legend align="center">Team</legend>
-      <%= render partial: 'features/collaborator', collection: @collaborators, as: :user, :locals => {:show => (false)} %>
-      <hr>
-    <% if user_owner %>
-    <div class="add_member" align="center">Add Member</div>
-    <%= simple_form_for(@feature, :url => add_collaborator_path, :html => { :class => "form-vertical" }) do |f| %>
-      <%= f.input_field :temp_collaborator, :label => false, :placeholder => "email or github username", :input_html => { :size => 40}%>
-      <%= f.input_field :temp_role, :label => false, :placeholder => "role", :input_html => { :size => 40}%>
-      <%= f.button :submit, class: "btn-success", :value => 'Add'%>
-    <% end %>
-    <% end %>
-    </div>
+        <legend align="center">Team</legend>
+        <%= render partial: 'features/collaborator', collection: @collaborators, as: :user, :locals => {:show => (false)} %>
+        <hr>
+        <% if user_owner %>
+        <div class="add_member" align="center">Add Member</div>
+          <%= simple_form_for(@feature, :url => add_collaborator_path, :html => { :class => "form-vertical" }) do |f| %>
+            <%= f.input_field :temp_collaborator, :label => false, :placeholder => "email or github username", :input_html => { :size => 40}%>
+            <%= f.input_field :temp_role, :label => false, :placeholder => "role", :input_html => { :size => 40}%>
+            <%= f.button :submit, class: "btn-success", :value => 'Add'%>
+          <% end %>
+        <% end %>
+          <%=simple_form_for(@feature, url: feature_images_path(@feature), method: :post) do |f| %>
+          <%= f.file_field :image %>
+          <%= f.button :submit %>
+          <%end %>
+      </div>
     </div>
   </div>
-  </div>
+</div>
 

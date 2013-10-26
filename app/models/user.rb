@@ -7,8 +7,9 @@ class User < ActiveRecord::Base
 
 
   #Validations
-  validates_presence_of :username
+  validates_presence_of :username, :email
   validates_uniqueness_of :username
+  
 
   devise :database_authenticatable, :registerable, :omniauthable,
          :recoverable, :rememberable, :trackable
@@ -16,7 +17,7 @@ class User < ActiveRecord::Base
   
   #Attributes
   attr_accessible :feature_users_attributes, :email, :password, :password_confirmation, :remember_me, :username, :name, :company, :collaborator_id
-  attr_accessor :temp_role
+
   # Methods
   # this is used to add a collaborator, not to sign in a github user through omniauth. that is done below.
   def self.from_github(auth)

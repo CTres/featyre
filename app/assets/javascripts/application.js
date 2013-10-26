@@ -53,6 +53,7 @@ $(document).ready(function(){
   var editor = new MediumEditor('.editable', {
     anchorInputPlaceholder: 'Write your Feature',
     diffLeft: 75});
+  $('.editable').mediumImages();
 })
 
 $(document).ready(function(){
