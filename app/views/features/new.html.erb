@@ -11,6 +11,9 @@
           <%= d.input_field :metric, label: false, placeholder: "metric"%>
           <%= d.input_field :quantity, label: false, placeholder: "by amount"%>
           <% end %>
+          <%= f.simple_fields_for :images do |i| %>
+          <%= i.file_field :image %>
+          <% end %>
           <%= f.input :tag_list, input_html: {class: "span8"}, placeholder: "tags, i.e python, machine learning", label: false, as: :text%>
           <%= f.input :text, as: :hidden%>
         <% end %>

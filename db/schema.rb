@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131025115805) do
+ActiveRecord::Schema.define(:version => 20131101125902) do
 
   create_table "feature_users", :force => true do |t|
     t.integer  "user_id"
@@ -34,11 +34,11 @@ ActiveRecord::Schema.define(:version => 20131025115805) do
 
   add_index "features", ["user_id"], :name => "index_features_on_user_id"
 
-  create_table "images", :force => true do |t|
-    t.string   "image"
+  create_table "photos", :force => true do |t|
     t.integer  "feature_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "image"
   end
 
   create_table "taggings", :force => true do |t|

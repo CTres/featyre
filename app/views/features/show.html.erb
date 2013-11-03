@@ -1,6 +1,7 @@
 <div class="container">
 <%= button_to "edit", edit_feature_path(@feature), class: "editbar btn btn-success", method: "get"  if user_owner%>
 <div class="status"></div>
+<%= image_tag @photo.image_url(), class: "title-photo" if @photo.image? %>
   <div class="row" id="feature-row">
     <div class="span8 offset1">
       <div class="feature-inner">

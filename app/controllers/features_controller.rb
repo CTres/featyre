@@ -28,12 +28,19 @@ class FeaturesController < ApplicationController
     @feature = Feature.find(params[:id])
     @collaborators = @feature.collaborators
     @value = Value.find_by_feature_id(params[:id])
+    @photo = @feature.photos.last
   end
 
   def edit
     @feature = Feature.find(params[:id])
     @collaborators = @feature.collaborators
     @value = Value.find_by_feature_id(params[:id])
+    if @feature.photos.first.nil? 
+      @photo = @feature.photos.build
+    else
+      @photo = @feature.photos.last
+    end
+
   end
 
   def create
@@ -51,11 +58,13 @@ class FeaturesController < ApplicationController
   end
 
   def update
-    @feature = @user.owned_features.find(params[:id])
+    puts params[:photos]
+    @feature = Feature.find(params[:id])
     respond_to do |format|
       if @feature.update_attributes(params[:feature])
         format.html { redirect_to @feature, notice: 'Feature was successfully updated.' }
         format.js {}
+        
       else
         render action: "edit" 
       end
@@ -101,4 +110,15 @@ class FeaturesController < ApplicationController
       end
     end
   end
+
+  def add_image
+    @feature = Feature.find(params[:id])
+    @photo = @feature.photos.new(params[:photo])
+    respond_to do |format|
+      if @photo.save
+        format.html {redirect_to :back}
+      end
+    end
+  end
+
 end

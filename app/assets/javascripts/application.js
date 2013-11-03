@@ -17,21 +17,21 @@
 //= require jquery.autosize
 //= require_tree .
 
-
-$(document).ready(function(){
-  // $('.collaborators').hide();
-  // $('.collaborators').fadeIn(4000);
-})
-
 function save_to_form() {
-	var content = $('#editor').html();
+  var content = $('#editor').html();
       $("input[id=feature_text]").val(content);
-      }
-
+      };
+      
 $(document).ready(function(){
-	$("#feature_title, #feature_subtitle, #feature_tag_list, #feature_text, #value_persona").autosize();
+    var editor = new MediumEditor('.editable', {
+    anchorInputPlaceholder: 'Write your Feature',
+    diffLeft: 75});
+$('.editable').mediumImages();
+
+
+  $("#feature_title, #feature_subtitle, #feature_tag_list, #feature_text, #value_persona").autosize();
   var timeout;
-  $('.editable, .simple_form').on('keyup paste', function () {
+  $('.editable, .feature_edit, .new_feature').on('keyup paste', function () {
     clearTimeout(timeout);
     save_to_form();
     $('.status').html('saving...');
@@ -46,14 +46,6 @@ $(document).ready(function(){
   $('.status').html('saving...');
   timer = setTimeout("$('.edit_user').submit(); ", 1500);
     });
-})
-
-
-$(document).ready(function(){
-  var editor = new MediumEditor('.editable', {
-    anchorInputPlaceholder: 'Write your Feature',
-    diffLeft: 75});
-  $('.editable').mediumImages();
 })
 
 $(document).ready(function(){

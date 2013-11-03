@@ -1,9 +1,8 @@
 (function ($) {
  
   $.fn.mediumImages = function( options ) {
- 
     var settings = $.extend({
-      'uploadScript': '/features/32/images'
+      'uploadScript': "/features/4/add_image.html"
     }, options );
     
     var setImagePlaceholders = function (that) {
@@ -181,11 +180,10 @@
         if (acceptedTypes[file.type] === true) {
         
           var formData = new FormData();
-          formData.append(':image', file);
+          formData.append('photo', file);
+          formData.append('authenticity_token', $('meta[name="csrf-token"]').attr('content'));
         
           var xhr = new XMLHttpRequest();
-          var token=$('meta[name="csrf-token"]').attr('content');
-          xhr.setRequestHeader('X-CSRF-Token',token );
           xhr.open('POST', settings.uploadScript);
           xhr.onload = function () {
             if (xhr.status === 200) {
@@ -210,8 +208,8 @@
           xhr.onload = function (e) {
             progress.attr('value', 100);
             progress.html(100);
-            
-            $('.progress:first').before('<span class="mediumImages-image"><img src="'+ e.currentTarget.response +'" draggable="true"></span>');
+            alert(e.currentTarget.response)
+            $('.progress:first').before('<span class="mediumImages-image"><img src="" draggable="true"></span>');
             var img = $('.progress:first').siblings('img');
             $('.progress:first').remove();
               
