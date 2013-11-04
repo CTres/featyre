@@ -1,10 +1,10 @@
 <div class="container">
   <div class="status"></div>
   <div class="row" id="feature-row">
-    <div class="span8 offset1">
+    <div class="span8 offset2">
       <div class="feature-inner">
         <%= simple_form_for(@feature) do |f| %>
-          <%= f.input :title, input_html: {class: "span9"}, placeholder: "add your title", label: false, as: :text, autofocus: true%>
+          <%= f.input :title, input_html: {class: "span8"}, placeholder: "add your title", label: false, as: :text, autofocus: true%>
           <%= f.simple_fields_for :values do |d| %>
           <%= d.input_field :persona, label: false, placeholder: "Persona"%>
           <%= d.input_field :change, collection: [ "increase", "decrease"], default: "increases"%>
@@ -21,6 +21,5 @@
         </div>
       </div>
     </div>
-    <div class="span3"></div>
   </div>
 </div>

@@ -1,7 +1,7 @@
 class FeaturesController < ApplicationController
   #Filters
   before_filter :find_user
-  before_filter :authenticate_user!, :except => :index
+  before_filter :authenticate_user!, :except => [:index, :show]
   autocomplete :tag, :name, :class_name => 'ActsAsTaggableOn::Tag'
 
   #Methods 

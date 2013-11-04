@@ -1,22 +1,17 @@
-.sidebar {
-	border-style: solid;
-	border-width: 1px;
-	border-color: gray;
-}
 
 .collaborators {
   font-family: "freight-sans-pro",sans-serif;
+  margin-left: 30px;
+  white-space:nowrap;
 }
+
 .collaborator-tag {
   padding-bottom: 10px;
   margin-bottom: 12px;
   border-radius: 5px;
-
 }
 
-.collaborator-tag:hover {
-  -webkit-box-shadow: 1px 1px 1px #99C2FF;
-}
+
 
 .edit_user {
   margin: 0;
@@ -37,6 +32,7 @@
 
 #collaborator-name {
   margin-top: 5px;
+  font-weight: bold;
   font-size: 18px;
   font-family: "freight-sans-pro",sans-serif;
   font-weight: normal;

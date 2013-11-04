@@ -1,33 +1,36 @@
 <div class="container">
-<%= button_to "edit", edit_feature_path(@feature), class: "editbar btn btn-success", method: "get"  if user_owner%>
-<div class="status"></div>
-<%= image_tag @photo.image_url(), class: "title-photo" if @photo.image? %>
-  <div class="row" id="feature-row">
-    <div class="span8 offset1">
-      <div class="feature-inner">
-    	  <div id="show_feature_title">
-          <%= @feature.title %>
-        </div>
-        <div id="feature_subtitle">
-          <%= @value.impact %>
-        </div>
-
-        <div class="show_feature" id="feature_tag_list">
-         @<%=@feature.company %> -
-         <%= @feature.tag_list %>
-        </div>
-        <hr>
-        <div class="feature_body">
-    	    <%= @feature.text.html_safe %>
-        </div>
-      </div>
-    </div>
-    <div class="span2 offset1">
-      <div class="collaborators">
-        <legend align="center">Team</legend>
-        <%= render partial: 'features/collaborator', collection: @collaborators, as: :user, :locals => {:show => (true)} %>
-      </div>
+  <%= button_to "edit", edit_feature_path(@feature), class: "editbar btn btn-success", method: "get"  if user_owner%>
+  <div class="status"></div>
+  <div class="row">
+    <div class="span8 offset2">
+      <%= image_tag @photo.image_url(:large) if @photo %>
     </div>
   </div>
+    <div class="row" id="feature-row">
+      <div class="span8 offset2">
+        <div class="feature-inner">
+      	  <div id="show_feature_title">
+            <%= @feature.title %>
+          </div>
+          <div id="feature_subtitle">
+            <%= @value.impact %>
+          </div>
+
+          <div class="show_feature" id="feature_tag_list">
+           <%= @feature.tag_list %>
+          </div>
+          <hr>
+          <div class="feature_body">
+      	    <%= @feature.text.html_safe %>
+          </div>
+        </div>
+      </div>
+      <div class="span2">
+        <div class="collaborators">
+          <legend align="center"> @<%=@feature.company %> </legend>
+          <%= render partial: 'features/collaborator', collection: @collaborators, as: :user, :locals => {:show => (true)} %>
+        </div>
+      </div>
+    </div>
 </div>
 
