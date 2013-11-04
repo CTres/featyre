@@ -4,4 +4,11 @@ class Photo < ActiveRecord::Base
     #Image Uploader
   attr_accessible :image, :feature_id, :remove_image, :name
   mount_uploader :image, ImageUploader
+
+  def find_or_create(id)
+  	unless Photo.find(id).nil?
+
+  	end	
+	end
+  		
 end

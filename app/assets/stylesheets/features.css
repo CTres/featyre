@@ -145,8 +145,14 @@
   color: black;
 }
 
-.title-photo{
+.top-photo{
   display: block;
+  margin: auto;
+  padding-bottom: 10px;
+}
+
+.top-photo-form {
+  padding-top: 10px;
   margin: auto;
 }
 

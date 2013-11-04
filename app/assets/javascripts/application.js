@@ -15,53 +15,5 @@
 //= require twitter/bootstrap
 //= require medium-editor
 //= require jquery.autosize
-//= require_tree .
-
-function save_to_form() {
-  var content = $('#editor').html();
-      $("input[id=feature_text]").val(content);
-      };
-      
-$(document).ready(function(){
-    var editor = new MediumEditor('.editable', {
-    anchorInputPlaceholder: 'Write your Feature',
-    diffLeft: 75});
-$('.editable').mediumImages();
-
-
-  $("#feature_title, #feature_subtitle, #feature_tag_list, #feature_text, #value_persona").autosize();
-  var timeout;
-  $('.editable, .feature_edit, .new_feature').on('keyup paste', function () {
-    clearTimeout(timeout);
-    save_to_form();
-    $('.status').html('saving...');
-    timeout = setTimeout("$('.new_feature, .feature_edit').submit(); ", 1500);
-  });
-})
-
-$(document).ready(function(){
-  var timer;
-  $('.role').on('keyup paste', function () {
-  clearTimeout(timer);
-  $('.status').html('saving...');
-  timer = setTimeout("$('.edit_user').submit(); ", 1500);
-    });
-})
-
-$(document).ready(function(){
-  var timer;
-  $('.value').on('keyup paste', function () {
-  clearTimeout(timer);
-  $('.status').html('saving...');
-  timer = setTimeout("$('.edit_value').submit(); ", 1500);
-    });
-})
-
-// $(document).ready(function(){
-// var editor = new Medium({
-// element: document.getElementById('editor'), 
-// mode: 'rich',
-// placeholder: 'write about your shipped feature'
-// });
-// })
-
+//= require feature
+//= require_tree .      

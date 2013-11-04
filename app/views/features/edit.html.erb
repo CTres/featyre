@@ -2,15 +2,17 @@
 <!-- publish button -->
   <%= button_to "Publish", feature_path(@feature), class: "editbar btn btn-success", method: "get" %>
   <div class="status"></div>
-  <%= image_tag @photo.image_url(), class: "title-photo" if @photo.image? %>
+  <%= image_tag @photo.image_url(), class: "top-photo" if @photo.image? %>
+    <div class="photo-title">
+     <%= simple_form_for @photo, url: add_image_path, html: {multipart: true} do |f| %>
+        <%= f.file_field :image %>
+        <%= f.button :submit, class: "btn-success" %>
+        <% end %>
+  </div>
   <div class="row" id="feature-row">
     <div class="span8 offset1">
       <div class="feature-inner">
       <!-- feature editor -->
-      <%= simple_form_for @photo, url: add_image_path, html: {multipart: true} do |f| %>
-        <%= f.file_field :image %>
-        <%= f.button :submit, class: "btn-success" %>
-        <% end %>
         <%= render partial: 'feature-editor' %>
       </div>
     </div> 
