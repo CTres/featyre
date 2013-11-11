@@ -3,6 +3,8 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.12'
 gem 'devise'
 gem 'omniauth-github'
+gem 'omniauth-google-oauth2'
+gem 'omniauth-twitter'
 gem 'octokit'
 gem 'figaro'
 gem 'sqlite3'
@@ -18,13 +20,14 @@ gem 'carrierwave'
 
 
 group :assets do
-  #gem 'sass-rails'
+  gem 'sass-rails'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'less-rails'
   gem 'uglifier', '>= 1.0.3'
   gem 'twitter-bootstrap-rails'
   gem 'haml'
   gem 'therubyracer'
+  #gem 'jquery-fileupload-rails'
 end
 
 

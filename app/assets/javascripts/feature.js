@@ -22,6 +22,13 @@ $(document).ready(function(){
   $('.status').html('saving...');
   timer = setTimeout("$('.edit_user').submit(); ", 3000);
   });
+
+  $(".add_photo").on('click', function () {
+    $('.photo').click();
+  });
+  $(".photo").change(function() {
+  $(".photo_form").submit();
+  });
 });
 
 function save_to_form() {

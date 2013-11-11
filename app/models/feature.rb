@@ -2,7 +2,7 @@ class Feature < ActiveRecord::Base
   after_initialize :init
 
   #Attributes
-  attr_accessible :feature_users_attributes, :values_attributes,  :user_id, :text, :title, :tag_list, :url, :description, :collaborators, :collaborator_list, :company, :subtitle
+  attr_accessible :photos_attributes, :feature_users_attributes, :values_attributes,  :user_id, :text, :title, :tag_list, :url, :description, :collaborators, :collaborator_list, :company, :subtitle
 	#Associations
   belongs_to :user
   has_many :feature_users

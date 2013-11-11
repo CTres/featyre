@@ -3,12 +3,13 @@
   <%= button_to "Publish", feature_path(@feature), class: "editbar btn btn-success", method: "get" %>
   <div class="status"></div>
   <div class="row">
-    <div class="span8 offset2">
+    <div class="span8 offset2 photos">
       <%= image_tag @photo.image_url(:large) if @photo.image? %>
-      <br>
-      <%= simple_form_for @photo, url: add_image_path, html: {multipart: true} do |f| %>
-        <%= f.file_field :image %>
-        <%= f.button :submit, class: "btn-success" %>
+      <%= image_tag "camera.png", class: 'add_photo' unless @photo.image? %>
+      <%= simple_form_for @feature, html: {multipart: true, class: 'photo_form'} do |f| %>
+        <%= f.simple_fields_for :photos do |p| %>
+        <%= p.file_field :image, class: 'photo', as: :hidden%>
+        <% end %>
         <% end %>
     </div>
   </div>

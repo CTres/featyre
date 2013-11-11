@@ -12,13 +12,16 @@
       	  <div id="show_feature_title">
             <%= @feature.title %>
           </div>
+          <% unless @value.impact.nil? %>
           <div id="feature_subtitle">
             <%= @value.impact %>
           </div>
-
+          <% end %>
+          <% unless @feature.tag_list.empty? %>
           <div class="show_feature" id="feature_tag_list">
            <%= @feature.tag_list %>
           </div>
+          <% end %>
           <hr>
           <div class="feature_body">
       	    <%= @feature.text.html_safe %>
@@ -27,7 +30,12 @@
       </div>
       <div class="span2">
         <div class="collaborators">
-          <legend align="center"> @<%=@feature.company %> </legend>
+          <legend align="center">
+          <% unless @feature.company.blank? %>
+           @<%=@feature.company %> </legend>
+           <% else %>
+           <hr>
+           <% end %>
           <%= render partial: 'features/collaborator', collection: @collaborators, as: :user, :locals => {:show => (true)} %>
         </div>
       </div>

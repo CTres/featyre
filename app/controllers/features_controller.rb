@@ -9,6 +9,7 @@ class FeaturesController < ApplicationController
   def new
     @feature = @user.owned_features.new
     @value = @feature.values.new
+    @photo = @feature.photos.build
   end
 
   def index
@@ -34,7 +35,7 @@ class FeaturesController < ApplicationController
   def edit
     @feature = Feature.find(params[:id])
     @collaborators = @feature.collaborators
-    @value = Value.find_by_feature_id(params[:id])
+    @value = Value.find_by_feature_id(params[:id]) || @feature.values.create()
     if @feature.photos.first.nil? 
       @photo = @feature.photos.build
     else
@@ -62,7 +63,7 @@ class FeaturesController < ApplicationController
     @feature = Feature.find(params[:id])
     respond_to do |format|
       if @feature.update_attributes(params[:feature])
-        format.html { redirect_to @feature, notice: 'Feature was successfully updated.' }
+        format.html { redirect_to :back }
         format.js {}
         
       else

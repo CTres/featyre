@@ -12,5 +12,7 @@
   <% end %>
   <hr>
   <div class="feature_body editable" id="editor"> 
+    <% unless @feature.text.nil? %>
     <%= @feature.text.html_safe %>
+    <% end %>
   </div>

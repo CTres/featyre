@@ -1,9 +1,11 @@
 .brand {
 	font-family: "freight-sans-pro",sans-serif;
 	font-weight: bold;
+	border-radius: 3px;
 }
 
 .search-query {
+	margin-left: 20px;
 	font-family: "freight-sans-pro",sans-serif;
 	font-weight: normal;
 }
