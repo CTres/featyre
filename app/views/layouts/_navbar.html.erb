@@ -15,10 +15,9 @@
           <a href="#">About</a> 
           </li>
         </ul>
-        <ul id="user-links">
-          <a class="btn-auth btn-github" a href="/users/auth/github">
-          Sign in with <b>github</b>
-          </a>
+        <ul class="nav" id="user-links">
+          <%= link_to "Sign Up", new_user_registration_path %> |
+          <%= link_to "Login", new_user_session_path %>
         </ul>
       </div>
       <% else %>
@@ -38,7 +37,7 @@
               <%= image_tag current_user.avatar_url, size: "30x30"%>
               <%= current_user.username %>
             </div>
-            <a class="btn-auth btn-github" a href="/users/logout" data-method="delete" rel="nofollow">logout</a>
+            <a class="btn-auth btn-<%="#{current_user.provider}"%>" a href="/users/logout" data-method="delete" rel="nofollow">logout</a>
           </ul>
         </div> <!-- navbar-content  -->
       <% end %>

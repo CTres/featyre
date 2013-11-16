@@ -1,23 +1,33 @@
-<h2>Sign up</h2>
 
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+  <div class="container">
+    <div class="row">
+      <div class="span4 offset4 form-user">
+          <h4 class="heading"> Create FEATYRE Account</h4>
+          <div class="options">
+            <a class="btn-auth btn-github large" a href="/users/auth/github"> Sign in with <b>github</b> </a>
+            </div>
+            <div class="options">
+          <a class="btn-auth btn-google_oauth2 large" a href="/users/auth/google_oauth2"> Sign in with <b>gmail</b> </a>
+          </div>
+          <legend> or </legend>
+          <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+            <%= f.error_notification %>
+            <div class="form-inputs">
+             <%= f.input :email, autofocus: true, required: true, label: false, placeholder: 'Email' %>
+             <%= f.input :password, required: true, label: false, placeholder: 'Password' %>
+             <%= f.input :password_confirmation, required: true, label: false, placeholder: 'Confirm Password' %>
+             <%= f.button :submit, "Create Your Account", class: 'btn.btn-large btn-primary', id: 'create_btn'%>
+            </div>
+          <% end %>
+          <hr>
+      </div>
+    </div>
+  </div>
 
-  <div class="field"><%= f.label :email %><br />
-  <%= f.email_field :email %></div>
 
-  <div class="field"><%= f.label :username %><br />
-  <%= f.email_field :username %></div>
 
-  <% if f.object.password_required? %>
-    <div class="field"><%= f.label :password %><br />
-    <%= f.password_field :password %></div>
 
-    <div class="field"><%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation %></div>
-  <% end %>
 
-  <div class="field"><%= f.submit "Sign up" %></div>
-<% end %>
 
-<%= render "devise/shared/links" %>
+
+

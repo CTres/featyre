@@ -3,7 +3,7 @@
 	<% if show == false %>
 	<div id="collaborator-role">
 		<%= simple_form_for(user, url: update_feature_user_path(user_id: user.id), method: :post, remote: true, :defaults => { :input_html => { :class => "role" } }) do |f| %>
-			<%= f.input_field :role, placeholder: 'role', label: false %>
+			<%= f.input_field :role, placeholder: 'add role', label: false %>
 		<% end %>
 	</div>
 	<div id="collaborator-name">

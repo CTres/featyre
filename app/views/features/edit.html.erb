@@ -3,13 +3,14 @@
   <%= button_to "Publish", feature_path(@feature), class: "editbar btn btn-success", method: "get" %>
   <div class="status"></div>
   <div class="row">
-    <div class="span8 offset2">
-      <%= image_tag @photo.image_url(:large) if @photo.image? %>
-      <br>
-      <%= simple_form_for @photo, url: add_image_path, html: {multipart: true} do |f| %>
-        <%= f.file_field :image %>
-        <%= f.button :submit, class: "btn-success" %>
+    <div class="span8 offset2 photos">
+      <%= image_tag(@photo.image_url(:large), class: 'image') if @photo.image? %>
+      <%= image_tag "camera.png", class: 'add_photo' unless @photo.image? %>
+      <%= simple_form_for@feature, html: {multipart: true, class: 'photo_form'} do |f| %>
+        <%= f.simple_fields_for :photos do |p| %>
+          <%= p.file_field :image, class: 'photo', as: :hidden%>
         <% end %>
+      <% end %>
     </div>
   </div>
   <div class="row" id="feature-row">
@@ -24,16 +25,8 @@
       <div class="collaborators">
         <legend align="center">@<%=@feature.company %> </legend>
         <%= render partial: 'features/collaborator', collection: @collaborators, as: :user, :locals => {:show => (false)} %>
-        <hr>
-        <% if user_owner %>
-        <div class="add_member" align="center">Add Member</div>
-          <%= simple_form_for(@feature, :url => add_collaborator_path, :html => { :class => "form-vertical" }) do |f| %>
-            <%= f.input_field :temp_collaborator, :label => false, :placeholder => "email or github username", :input_html => { :size => 40}%>
-            <%= f.input_field :temp_role, :label => false, :placeholder => "role", :input_html => { :size => 40}%>
-            <%= f.button :submit, class: "btn-success", :value => 'Add'%>
-          <% end %>
-        <% end %>
       </div>
+      <%= render 'add_member' %>
     </div>
   </div>
 </div>

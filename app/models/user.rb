@@ -7,13 +7,13 @@ class User < ActiveRecord::Base
 
 
   #Validations
-  validates_presence_of :username, :email
-  validates_uniqueness_of :username
+  validates_presence_of :email
+  validates_uniqueness_of :email
+  validates_presence_of :password
   
 
   devise :database_authenticatable, :registerable, :omniauthable,
-         :recoverable, :rememberable, :trackable
-         #:validatable short term fix to turn this off so that self.from_github works
+         :recoverable, :rememberable, :trackable, :validatable #short term fix to turn this off so that self.from_github works
   
   #Attributes
   attr_accessible :feature_users_attributes, :email, :password, :password_confirmation, :remember_me, :username, :name, :company, :collaborator_id
@@ -52,21 +52,34 @@ class User < ActiveRecord::Base
       puts 'not saved'
     end
   end
+
   #all omniauth signups go here. 
   def self.from_omniauth(auth)
     where(auth.slice(:provider, :uid)).first_or_create do |user|
-      user.provider = auth.provider
-      user.uid = auth.uid
-      user.username = auth.info.nickname
-      user.email = auth.info.email
-      user.name = auth.extra.raw_info.name
-      user.url = auth.extra.raw_info.html_url
-      user.location = auth.extra.raw_info.location
-      user.hireable = auth.extra.raw_info.hireable
-      user.blog = auth.info.urls.blog
-      user.company = auth.extra.raw_info.company
-      user.avatar_url = auth.extra.raw_info.avatar_url 
-      user.gravatar_id = auth.extra.raw_info.gravatar_id
+      if auth.provider == 'github'
+        user.provider = auth.provider
+        user.uid = auth.uid
+        user.username = auth.info.nickname
+        user.email = auth.info.email
+        user.password = Devise.friendly_token[0,20]
+        user.name = auth.extra.raw_info.name
+        user.url = auth.extra.raw_info.html_url
+        user.location = auth.extra.raw_info.location
+        user.hireable = auth.extra.raw_info.hireable
+        user.blog = auth.info.urls.blog
+        user.company = auth.extra.raw_info.company
+        user.avatar_url = auth.extra.raw_info.avatar_url 
+        user.gravatar_id = auth.extra.raw_info.gravatar_id
+      #google 
+      else
+        user.provider = auth.provider
+        user.uid = auth.uid
+        user.name = auth.info.name
+        user.username = auth.info.name
+        user.email = auth.info.email
+        user.password = Devise.friendly_token[0,20]
+        user.avatar_url = auth.info.image
+      end
     end
   end
   

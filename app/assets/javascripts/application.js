@@ -16,4 +16,5 @@
 //= require medium-editor
 //= require jquery.autosize
 //= require feature
+//= require photos
 //= require_tree .      

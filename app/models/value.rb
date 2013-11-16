@@ -9,12 +9,16 @@ class Value < ActiveRecord::Base
 
   
 	def impact
-		if self.quantity.blank?
-		@impact = "#{self.persona} #{self.change} #{self.metric}"
+		#return nothing a field is blank
+		unless self.persona.blank? or self.metric.blank?
+			if self.quantity.blank?
+				@impact = "#{self.persona} #{self.change} #{self.metric}"
+			else
+				@impact = "#{self.persona} #{self.change} #{self.metric} by #{self.quantity}"
+			end
 		else
-		@impact = "#{self.persona} #{self.change} #{self.metric} by #{self.quantity}"
-		end
-		@impact
+		return nil
+    end
 	end
 
 	# make sure that persona is capitalized
