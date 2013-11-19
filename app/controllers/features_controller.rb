@@ -21,7 +21,7 @@ class FeaturesController < ApplicationController
     end
 
     if user_signed_in?
-    @myfeatures = @user.owned_features
+    @myfeatures = @user.owned_features + @user.collaborated_features
     end
   end
 
@@ -88,18 +88,23 @@ class FeaturesController < ApplicationController
     #variables
     
     @feature = Feature.find(params[:id])
-    name = params[:feature][:temp_collaborator]
-    begin
+    email = params[:feature][:temp_collaborator]
+    name = params[:feature][:temp_name]
+    puts name
+    puts email
+    #begin
     #find the collaborator and return the id so we can make the join model record (feels like an ugly hack :)
-    id = @feature.find_or_create_collaborator(name, session['token'])
-    @feature.feature_users.create!(user_id: id, role: params[:feature][:temp_role] )
+    id = @feature.find_or_create_collaborator(email, name, session['token'])
+    puts id
+    puts 'we made it through the invite process'
+    @feature.feature_users.create!(user_id: id)
       respond_to do |format|
         format.html { redirect_to :back }
         format.js {}
     end
-  rescue
-    redirect_to :back, notice: 'no such user found at github'
-  end
+  # rescue
+  #   redirect_to :back, notice: 'no such user found at github'
+  # end
   end
 
   def remove_collaborator

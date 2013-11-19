@@ -2,8 +2,8 @@
 <% if user_owner %>
 <div class="add_member" align="center">Add Member</div>
   <%= simple_form_for(@feature, :url => add_collaborator_path, :html => { :class => "form-vertical" }) do |f| %>
+    <%= f.input_field :temp_name, :label => false, :placeholder => "name", :input_html => { :size => 40}%>
     <%= f.input_field :temp_collaborator, :label => false, :placeholder => "email or github username", :input_html => { :size => 40}%>
-    <%= f.input_field :temp_role, :label => false, :placeholder => "role", :input_html => { :size => 40}%>
     <%= f.button :submit, class: "btn-success", :value => 'Add'%>
   <% end %>
 <% end %>

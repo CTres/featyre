@@ -12,8 +12,8 @@ class User < ActiveRecord::Base
   validates_presence_of :password
   
 
-  devise :database_authenticatable, :registerable, :omniauthable,
-         :recoverable, :rememberable, :trackable, :validatable #short term fix to turn this off so that self.from_github works
+  devise  :database_authenticatable, :registerable, :omniauthable, :invitable,
+          :recoverable, :rememberable, :trackable, :validatable #short term fix to turn this off so that self.from_github works
   
   #Attributes
   attr_accessible :feature_users_attributes, :email, :password, :password_confirmation, :remember_me, :username, :name, :company, :collaborator_id
@@ -39,13 +39,12 @@ class User < ActiveRecord::Base
     end
   end
 
-  def self.from_email(email)
-    @user = User.where(email: email).first_or_create do |user|
-      user.email = email
-      user.password = Devise.friendly_token[0,20]
-      user.username = email
-      user.name = 'invited' if user.name.nil?
-    end
+  def self.from_email(email, name)
+    if User.find_by_email(email)
+    @user = User.find_by_email(email)
+   else
+    @user = User.invite!(email: email, name: name)
+   end
     if @user.persisted?
       @user
     else

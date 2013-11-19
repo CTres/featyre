@@ -12,7 +12,7 @@ class Feature < ActiveRecord::Base
   accepts_nested_attributes_for :photos, :allow_destroy => true
  	accepts_nested_attributes_for :feature_users, :values
  	
-  attr_accessor :temp_collaborator, :temp_role
+  attr_accessor :temp_collaborator, :temp_name
 
   #Validations
   #validates :title, :tag_list, :subtitle, presence: true
@@ -26,14 +26,14 @@ class Feature < ActiveRecord::Base
   	collaborators = self.collaborators.to_a
   end
 
-  def find_or_create_collaborator(string, token)
+  def find_or_create_collaborator(string, name, token)
     #check if input is an email
     if string.match(/\b[A-Z0-9._%a-z\-]+@(?:[A-Z0-9a-z\-]+\.)+[A-Za-z]{2,4}\z/)
       #check to see if user is in database with email
       if User.find_by_email(string).nil?
         #!!!!!add check to see if github has a user with that email before creating new user
         #if no user in db with email, create user
-        user = User.from_email(string)
+        user = User.from_email(string, name)
         return user.id
       else
         user = User.find_by_email(string)
