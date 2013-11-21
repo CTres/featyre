@@ -1,8 +1,10 @@
 (function ($) {
- 
+  
   $.fn.mediumImages = function( options ) {
+    var id = $('.feature-inner').data('id');
+    var url = '/features/' + id + '/add_image';
     var settings = $.extend({
-      'uploadScript': "/features/4/add_image.html"
+      'uploadScript': url
     }, options );
     
     var setImagePlaceholders = function (that) {
@@ -208,8 +210,7 @@
           xhr.onload = function (e) {
             progress.attr('value', 100);
             progress.html(100);
-            alert(e.currentTarget.response)
-            $('.progress:first').before('<span class="mediumImages-image"><img src="" draggable="true"></span>');
+            $('.progress:first').before('<span class="mediumImages-image"><img src="'+ e.currentTarget.response +'" draggable="true"></span>');
             var img = $('.progress:first').siblings('img');
             $('.progress:first').remove();
               

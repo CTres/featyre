@@ -3,9 +3,10 @@ $(document).ready(function(){
   var editor = new MediumEditor('.editable', {
     anchorInputPlaceholder: 'Write your Feature',
     diffLeft: 75});
+  $('.editable').mediumImages();
   
   // autosize
-  $("#feature_title, #feature_subtitle, #feature_tag_list, #feature_text, #value_persona").autosize();
+  // $("#feature_title, #feature_subtitle, #feature_tag_list, #feature_text, #value_persona").autosize();
 
   // saving function for new and edit 
   var timeout;
@@ -36,11 +37,4 @@ function save_to_form() {
       $("input[id=feature_text]").val(content);
 };
 
-// $(document).ready(function(){
-// var editor = new Medium({
-// element: document.getElementById('editor'), 
-// mode: 'rich',
-// placeholder: 'write about your shipped feature'
-// });
-// })
 

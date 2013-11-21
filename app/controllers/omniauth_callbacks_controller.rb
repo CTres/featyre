@@ -1,7 +1,7 @@
  class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   skip_before_filter :authenticate_user!
   def all
-    user = User.from_omniauth(request.env["omniauth.auth"])
+    user = User.from_omniauth(request.env["omniauth.auth"], current_user)
     session['token'] = env["omniauth.auth"]['credentials']['token']
     if user.persisted?
       flash.notice = "Signed in!"

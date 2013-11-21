@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   has_many :owned_features, class_name: 'Feature', dependent: :destroy
   has_many :feature_users, dependent: :destroy
   has_many :collaborated_features, class_name: 'Feature', through: :feature_users, source: :feature
+  has_many :authorizations
   accepts_nested_attributes_for :feature_users
 
 
@@ -16,7 +17,7 @@ class User < ActiveRecord::Base
           :recoverable, :rememberable, :trackable, :validatable #short term fix to turn this off so that self.from_github works
   
   #Attributes
-  attr_accessible :feature_users_attributes, :email, :password, :password_confirmation, :remember_me, :username, :name, :company, :collaborator_id
+  attr_accessible :feature_users_attributes, :email, :password, :password_confirmation, :remember_me, :username, :name, :company, :collaborator_id, :user_attributes
 
   # Methods
   # this is used to add a collaborator, not to sign in a github user through omniauth. that is done below.
@@ -52,38 +53,27 @@ class User < ActiveRecord::Base
     end
   end
 
-  #all omniauth signups go here. 
-  def self.from_omniauth(auth)
-    where(auth.slice(:provider, :uid)).first_or_create do |user|
-      if auth.provider == 'github'
-        user.provider = auth.provider
-        user.uid = auth.uid
-        user.username = auth.info.nickname
-        user.email = auth.info.email
-        user.password = Devise.friendly_token[0,20]
-        user.name = auth.extra.raw_info.name
-        user.url = auth.extra.raw_info.html_url
-        user.location = auth.extra.raw_info.location
-        user.hireable = auth.extra.raw_info.hireable
-        user.blog = auth.info.urls.blog
-        user.company = auth.extra.raw_info.company
-        user.avatar_url = auth.extra.raw_info.avatar_url 
-        user.gravatar_id = auth.extra.raw_info.gravatar_id
-      #google 
-      else
-        user.provider = auth.provider
-        user.uid = auth.uid
-        user.name = auth.info.name
-        user.username = auth.info.name
-        user.email = auth.info.email
-        user.password = Devise.friendly_token[0,20]
-        user.avatar_url = auth.info.image
-      end
-    end
-  end
-  
+  #all omniauth signups go here.   
+  def self.from_omniauth(auth, current_user)
+    authorization = Authorization.where(provider: auth.provider, uid: auth.uid.to_s).first_or_initialize
+    if authorization.user.blank?
+      user = current_user.nil? ? User.where('email = ?', auth["info"]["email"]).first : current_user
+      if user.blank?
+       user = User.new
+       user.password = Devise.friendly_token[0,10]
+       user.name = auth.info.name
+       user.email = auth.info.email
+       auth.provider == "twitter" ?  user.save(:validate => false) :  user.save
+     end
+     authorization.username = auth.info.nickname
+     authorization.user_id = user.id
+     authorization.save
+     authorization.fetch_details(auth)
+   end
+   authorization.user
+ end
+
   def self.new_with_session(params, session)
-    puts "we are in the session part"
     if session["devise.user_attributes"]
       new(session["devise.user_attributes"], without_protection: true) do |user|
         user.attributes = params

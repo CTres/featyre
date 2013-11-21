@@ -119,10 +119,14 @@ class FeaturesController < ApplicationController
 
   def add_image
     @feature = Feature.find(params[:id])
-    @photo = @feature.photos.new(params[:photo])
+    puts @feature.id
+    puts params
+    @photo = @feature.photos.create(image: params[:photo])
+    puts @photo
     respond_to do |format|
       if @photo.save
-        format.html {redirect_to :back}
+        format.js { render "add_image" }
+        # , :locals => { :url => "#{@photo.image_url}" } 
       end
     end
   end
