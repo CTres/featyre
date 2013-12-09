@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131120083958) do
+ActiveRecord::Schema.define(:version => 20131209095431) do
 
   create_table "authorizations", :force => true do |t|
     t.string   "provider"
@@ -21,6 +21,12 @@ ActiveRecord::Schema.define(:version => 20131120083958) do
     t.string   "username"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "feature_title_photo", :force => true do |t|
+    t.integer  "photo_id"
+    t.integer  "feature_id"
+    t.datetime "created_at"
   end
 
   create_table "feature_users", :force => true do |t|
@@ -46,9 +52,10 @@ ActiveRecord::Schema.define(:version => 20131120083958) do
 
   create_table "photos", :force => true do |t|
     t.integer  "feature_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
     t.string   "image"
+    t.boolean  "primary",    :default => false
   end
 
   create_table "taggings", :force => true do |t|

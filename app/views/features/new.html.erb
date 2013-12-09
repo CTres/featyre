@@ -3,12 +3,13 @@
   <br>
     <div class="row">
     <div class="span8 offset2 photos">
-      <%= image_tag "camera.png", class: 'add_photo'%>
-      <%= simple_form_for @feature, html: {multipart: true, class: 'photo_form'} do |f| %>
-        <%= f.simple_fields_for :photos do |p| %>
-        <%= p.file_field :image, class: 'photo', as: :hidden%>
+      <%= image_tag "camera.png", class: 'add_photo', size: '50x50'%>
+      <%= simple_form_for(@feature, html: {multipart: true, class: 'photo_form'}) do |f| %>
+        <%= f.simple_fields_for :title_photo do |p| %>
+          <%= p.file_field :image, class: 'photo', as: :hidden%>
+          <%= p.hidden_field :primary, value: 'true' %>
         <% end %>
-        <% end %>
+      <% end %>
     </div>
   </div>
   <div class="row" id="feature-row">

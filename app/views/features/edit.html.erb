@@ -3,12 +3,14 @@
   <%= button_to "Publish", feature_path(@feature), class: "editbar btn btn-success", method: "get" %>
   <div class="status"></div>
   <div class="row">
-    <div class="span8 offset2 photos">
+    <div class="span8 offset2 title_photo">
       <%= image_tag(@photo.image_url(:large), class: 'image') if @photo.image? %>
-      <%= image_tag "camera.png", class: 'add_photo' unless @photo.image? %>
-      <%= simple_form_for@feature, html: {multipart: true, class: 'photo_form'} do |f| %>
-        <%= f.simple_fields_for :photos do |p| %>
+      <%= button_to 'X', @photo, :method => :delete, :class => 'btn btn-mini btn-danger' if @photo.image?%>
+      <%= image_tag "camera.png", class: 'add_photo', size: '50x50' unless @photo.image? %>
+      <%= simple_form_for(@feature, html: {multipart: true, class: 'photo_form'}) do |f| %>
+        <%= f.simple_fields_for :title_photo do |p| %>
           <%= p.file_field :image, class: 'photo', as: :hidden%>
+          <%= p.hidden_field :primary, value: 'true' %>
         <% end %>
       <% end %>
     </div>

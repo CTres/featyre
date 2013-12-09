@@ -9,7 +9,7 @@ class FeaturesController < ApplicationController
   def new
     @feature = @user.owned_features.new
     @value = @feature.values.new
-    @photo = @feature.photos.build
+    @photo = @feature.build_title_photo
   end
 
   def index
@@ -29,19 +29,15 @@ class FeaturesController < ApplicationController
     @feature = Feature.find(params[:id])
     @collaborators = @feature.collaborators
     @value = Value.find_by_feature_id(params[:id])
-    @photo = @feature.photos.last
+    @photo = @feature.title_photo
+    
   end
 
   def edit
     @feature = Feature.find(params[:id])
     @collaborators = @feature.collaborators
     @value = Value.find_by_feature_id(params[:id]) || @feature.values.create()
-    if @feature.photos.first.nil? 
-      @photo = @feature.photos.build
-    else
-      @photo = @feature.photos.last
-    end
-
+    @photo = @feature.title_photo || @feature.build_title_photo
   end
 
   def create
@@ -59,7 +55,6 @@ class FeaturesController < ApplicationController
   end
 
   def update
-    puts params[:photos]
     @feature = Feature.find(params[:id])
     respond_to do |format|
       if @feature.update_attributes(params[:feature])
@@ -85,18 +80,12 @@ class FeaturesController < ApplicationController
   end
 
   def add_collaborator
-    #variables
-    
     @feature = Feature.find(params[:id])
     email = params[:feature][:temp_collaborator]
     name = params[:feature][:temp_name]
-    puts name
-    puts email
     #begin
     #find the collaborator and return the id so we can make the join model record (feels like an ugly hack :)
     id = @feature.find_or_create_collaborator(email, name, session['token'])
-    puts id
-    puts 'we made it through the invite process'
     @feature.feature_users.create!(user_id: id)
       respond_to do |format|
         format.html { redirect_to :back }
@@ -119,10 +108,7 @@ class FeaturesController < ApplicationController
 
   def add_image
     @feature = Feature.find(params[:id])
-    puts @feature.id
-    puts params
     @photo = @feature.photos.create(image: params[:photo])
-    puts @photo
     respond_to do |format|
       if @photo.save
         format.js { render "add_image" }

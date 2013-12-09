@@ -2,15 +2,16 @@ class Feature < ActiveRecord::Base
   after_initialize :init
 
   #Attributes
-  attr_accessible :photos_attributes, :feature_users_attributes, :values_attributes,  :user_id, :text, :title, :tag_list, :url, :description, :collaborators, :collaborator_list, :company, :subtitle
+  attr_accessible :title_photo_attributes, :photos_attributes, :feature_users_attributes, :values_attributes,  :user_id, :text, :title, :tag_list, :url, :description, :collaborators, :collaborator_list, :company, :subtitle
 	#Associations
   belongs_to :user
   has_many :feature_users
   has_many :values
   has_many :photos
+  has_one :title_photo, class_name: 'Photo', conditions: {:primary => true}
   has_many :collaborators, class_name: 'User', through: :feature_users, source: :user, select: 'users.*, feature_users.role as role'
   accepts_nested_attributes_for :photos, :allow_destroy => true
- 	accepts_nested_attributes_for :feature_users, :values
+ 	accepts_nested_attributes_for :feature_users, :values, :title_photo
  	
   attr_accessor :temp_collaborator, :temp_name
 

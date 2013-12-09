@@ -17,5 +17,5 @@ Blog::Application.routes.draw do
     end
   end
       resources :users 
-          
+      resources :photos
 end

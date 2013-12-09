@@ -5,8 +5,8 @@
     <li><%= link_to 'Staff Picks', @user %> </li>
   </ul>
   <div id="feature-browser" class="row">
-  	<div class="span6">
-  		<div id="feature-list">
+    <div class="span6">
+      <div id="feature-list">
       <% if @filters %>
         <legend> Filters: 
           <% @filters.each do |f| %>
@@ -16,16 +16,14 @@
       <% else %>
       <legend> </legend>
       <% end %>
-  			<%= render @features.reverse %>
-  		</div>
-  	</div> 
-  	<div class="span4 offset1">
+        <%= render @features.reverse %>
+      </div>
+    </div> 
+    <div class="span4 offset1">
     <div class="new_feature_btn">
     <%= button_to "New Feature", new_feature_path(), class: "btn btn-success", method: "get"  if user_signed_in? %>
     </div>
-  			<%= render partial: "myfeature", collection:  @myfeatures.reverse, layout: "_myfeature" if user_signed_in? %>
-  			</div>
+        <%= render partial: "myfeature", collection:  @myfeatures.reverse, layout: "_myfeature" if user_signed_in? %>
+        </div>
   </div>
 </div>
-
-

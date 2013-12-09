@@ -11,15 +11,16 @@
     
       that.keyup(function () {        
         var i = 0;
-        
         $('p', that).each(function () {
-          if ($(this).next().hasClass('mediumImages-addImage') === false) {
-            $(this).after('<div class="mediumImages-addImage" id="mediumImages-addImage-'+ i +'" contenteditable="false">'+
-              '<div class="mediumImages-imageUploadInfo"><a>Add image</a> &nbsp;&rarr;</div>'+
-              '<div class="mediumImages-placeholder"></div>'+
-              '</div>');                 
-          } 
+          if ($(this).length > 0) {
+            if ($(this).next().hasClass('mediumImages-addImage') === false) {
+              $(this).after('<div class="mediumImages-addImage" id="mediumImages-addImage-'+ i +'" contenteditable="false">'+
+                '<div class="mediumImages-imageUploadInfo"><a>Add image</a> &nbsp;&rarr;</div>'+
+                '<div class="mediumImages-placeholder"></div>'+
+                '</div>');                 
+            } 
           i++;
+          }
         });
       }).keyup(); 
       

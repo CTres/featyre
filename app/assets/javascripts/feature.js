@@ -34,7 +34,7 @@ $(document).ready(function(){
 
 function save_to_form() {
   var content = $('#editor').html();
-      $("input[id=feature_text]").val(content);
+  $("input[id=feature_text]").val(content);
 };
 
 
