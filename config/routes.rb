@@ -10,6 +10,7 @@ Blog::Application.routes.draw do
   match "features/:id/remove_collaborator" => "features#remove_collaborator", as: 'remove_collaborator'
   match "users/:id/update_feature_user" => "users#update_feature_user", as: 'update_feature_user'
   match "features/:id/add_image" => "features#add_image", as: 'add_image'
+  match "features/my_features" => "features#my_features", as: 'my_features'
   
   resources :features do
     get :autocomplete_tag_name, :on => :collection

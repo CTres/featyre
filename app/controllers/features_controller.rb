@@ -70,7 +70,7 @@ class FeaturesController < ApplicationController
   def destroy
     @feature = Feature.find(params[:id])
     @feature.destroy
-    redirect_to users_url
+    redirect_to :root
   end
 
   def find_user
@@ -103,6 +103,13 @@ class FeaturesController < ApplicationController
         format.html { redirect_to :back }
         format.js {}
       end
+    end
+  end
+  def my_features
+    @user = current_user
+    @myfeatures = @user.owned_features + @user.collaborated_features
+    respond_to do |format|
+      format.js {}
     end
   end
 

@@ -1,6 +1,7 @@
 <div class="container">
 <!-- publish button -->
   <%= button_to "Publish", feature_path(@feature), class: "editbar btn btn-success", method: "get" %>
+  <%= button_to "Delete", @feature, method: :delete %>
   <div class="status"></div>
   <div class="row">
     <div class="span8 offset2 title_photo">

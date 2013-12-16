@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.12'
+gem 'pg'
 gem 'devise'
 gem 'devise_invitable'
 gem 'omniauth-github'
@@ -37,5 +38,6 @@ group :development do
 	gem 'quiet_assets'
 end
 
+ruby '2.0.0'
 
 

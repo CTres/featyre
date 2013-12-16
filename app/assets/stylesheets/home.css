@@ -1,0 +1,31 @@
+.background {
+	border-radius: 5px;
+}
+
+.home {
+	min-height: 700px;
+	background-color: white;
+	margin-left: 50px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	padding: 10px 10px 10px;
+	border: solid;
+	border-width: 1px;
+	border-radius: 5px;
+}
+
+.features_column {
+	min-height: 700px;
+	background-color: white;
+	margin-left: 15px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	padding: 10px 10px 10px;
+	border: solid;
+	border-width: 1px;
+	border-radius: 5px;
+}
+
+.appendable {
+
+}

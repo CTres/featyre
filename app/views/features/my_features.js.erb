@@ -1,0 +1,6 @@
+$('.appendable').append("<div class='features_column span4 myfeatures'>")
+$('.myfeatures').append("<legend>My Features</legend>")
+$('.myfeatures').append("<%=j render partial: @myfeatures %>")
+$('.appendable').append("</div>")
+
+
