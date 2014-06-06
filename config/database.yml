@@ -3,12 +3,12 @@ development:
   encoding: unicode
   database: featyre_development
   pool: 5
-  username: ctres
+  username: tres
   password:
 test:
   adapter: postgresql
   encoding: unicode
-  database: featyre_test
+  database: tres
   pool: 5
   username: myapp
   password:

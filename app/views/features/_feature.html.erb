@@ -1,18 +1,25 @@
-<div class="feature" draggable="true">
-  <% if feature.company %>
-    @<%=feature.company %>
-    <% end %>
+
+<!-- feature list box -->
+<%= link_to edit_feature_path(feature) do %>
+<div class="feature-list-item" draggable="true">
+<!-- feature title -->
   <div id="title" display="inline-block">
-	<%=link_to feature.user.name, user_path(feature.user)  if feature.user%> shipped <%= link_to feature.title, feature %>
-	</div>
+	  <%= link_to feature.title, edit_feature_path(feature) %>
+    <% feature.tag_list.each do |f|%>
+      <div class="label label-info"> <%=link_to f, features_path(query: f), id: 'nolink' %> 
+      </div> 
+    <% end %>
+  </div>
+
+<!-- feature text -->
+  <div class="feature-list-text">
+    <%= ActionController::Base.helpers.strip_tags(feature.text)[0...40] +'...'%>
+  </div>
   <div id="details">
     <%= feature.subtitle %> 
   </div>
-    <% feature.tag_list.each do |f|%>
-    <div class="label label-info"> <%=link_to f, features_path(query: f), id: 'nolink' %> </div> 
-    <% end %>
 </div>
-
+<% end %>
 
 
 <!-- <h4 class="title">  </h4>

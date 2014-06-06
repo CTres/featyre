@@ -1,7 +1,8 @@
 $(document).ready(function(){
   // content editable editor
   var editor = new MediumEditor('.editable', {
-    anchorInputPlaceholder: 'Write your Feature',
+    anchorInputPlaceholder: 'Add your note',
+    buttons: ['bold', 'italic', 'underline', 'header1', 'header2', 'unorderedlist', 'orderedlist'],
     diffLeft: 75});
   $('.editable').mediumImages();
   

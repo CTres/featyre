@@ -1,8 +1,5 @@
-<div class="container">
+<div class="new-feature-partial">
   <div class="status"></div>
-  <br>
-    <div class="row">
-    <div class="span8 offset2 photos">
       <%= image_tag "camera.png", class: 'add_photo', size: '50x50'%>
       <%= simple_form_for(@feature, html: {multipart: true, class: 'photo_form'}) do |f| %>
         <%= f.simple_fields_for :title_photo do |p| %>

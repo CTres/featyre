@@ -1,0 +1,13 @@
+<div class="dropdown">
+  <div class="icon-cog dropdown-toggle sr-only settings" type="button" data-toggle="dropdown" id="dropdownMenu1">
+  </div>
+  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+    <li role="presentation">  
+      <%= link_to "Publish", feature_path(@feature), method: "get" %> 
+    </li>
+    <li role="presentation" class="divider"></li>
+    <li role="presentation"> 
+      <%= link_to "Delete", @feature, method: :delete %> 
+    </li>
+  </ul>
+</div>

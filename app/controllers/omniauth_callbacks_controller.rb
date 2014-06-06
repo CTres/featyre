@@ -13,4 +13,5 @@
   end
   alias_method :github, :all
   alias_method :google_oauth2, :all
+  alias_method :facebook, :all
 end

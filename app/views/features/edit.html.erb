@@ -1,8 +1,17 @@
+
+
 <div class="container">
-<!-- publish button -->
-  <%= button_to "Publish", feature_path(@feature), class: "editbar btn btn-success", method: "get" %>
-  <%= button_to "Delete", @feature, method: :delete %>
-  <div class="status"></div>
+<!-- settings button  -->
+  <div class="row">
+
+    <div class="span1 offset10">
+      <div class="status"></div>
+    </div>
+    <div class="span1"> 
+      <%= render partial: 'settings-dropdown' %>
+    </div>
+  </div>
+
   <div class="row">
     <div class="span8 offset2 title_photo">
       <%= image_tag(@photo.image_url(:large), class: 'image') if @photo.image? %>
@@ -24,13 +33,16 @@
       </div>
     </div> 
     <!-- collaborators column -->
-    <div class="span2">
+    
+  </div>
+</div>
+
+
+
+<!-- <div class="span2">
       <div class="collaborators">
         <legend align="center">@<%=@feature.company %> </legend>
         <%= render partial: 'features/collaborator', collection: @collaborators, as: :user, :locals => {:show => (false)} %>
       </div>
       <%= render 'add_member' %>
-    </div>
-  </div>
-</div>
-
+    </div> -->

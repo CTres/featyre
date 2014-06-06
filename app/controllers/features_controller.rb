@@ -4,7 +4,7 @@ class FeaturesController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show]
   autocomplete :tag, :name, :class_name => 'ActsAsTaggableOn::Tag'
 
-  #Methods 
+  #Methods
 
   def new
     @feature = @user.owned_features.new
@@ -13,6 +13,9 @@ class FeaturesController < ApplicationController
   end
 
   def index
+    
+    
+    
     if params[:query]
     @filters = params[:query].split
     @features = Feature.tagged_with(@filters)
@@ -21,7 +24,10 @@ class FeaturesController < ApplicationController
     end
 
     if user_signed_in?
-    @myfeatures = @user.owned_features + @user.collaborated_features
+    @feature = @user.owned_features.new
+    @value = @feature.values.new
+    @photo = @feature.build_title_photo
+    @myfeatures = @user.collaborated_features
     end
   end
 
@@ -30,7 +36,7 @@ class FeaturesController < ApplicationController
     @collaborators = @feature.collaborators
     @value = Value.find_by_feature_id(params[:id])
     @photo = @feature.title_photo
-    
+
   end
 
   def edit
@@ -44,7 +50,7 @@ class FeaturesController < ApplicationController
     @feature = @user.owned_features.new(params[:feature])
     respond_to do |format|
       if @feature.save
-        #add the original poster as a feature user. 
+        #add the original poster as a feature user.
         @feature.feature_users.create!(user_id: @user.id)
         format.html { redirect_to edit_feature_path(@feature) }
         format.js {redirect_to edit_feature_path(@feature) }
@@ -60,9 +66,9 @@ class FeaturesController < ApplicationController
       if @feature.update_attributes(params[:feature])
         format.html { redirect_to :back }
         format.js {}
-        
+
       else
-        render action: "edit" 
+        render action: "edit"
       end
     end
   end
@@ -119,7 +125,7 @@ class FeaturesController < ApplicationController
     respond_to do |format|
       if @photo.save
         format.js { render "add_image" }
-        # , :locals => { :url => "#{@photo.image_url}" } 
+        # , :locals => { :url => "#{@photo.image_url}" }
       end
     end
   end

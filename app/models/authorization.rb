@@ -47,7 +47,9 @@ belongs_to :user
   end
 
 
-  def fetch_details_from_linkedin
+  def fetch_details_from_facebook(auth)
+    self.user.name = auth.info.name
+    self.user.avatar_url = auth.info.image
 
   end
 
