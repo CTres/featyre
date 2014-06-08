@@ -1,5 +1,5 @@
 $(document).ready(function(){
-  // content editable editor
+  // content editable editor - get the medium-editor.js from github
   var editor = new MediumEditor('.editable', {
     anchorInputPlaceholder: 'Add your note',
     buttons: ['bold', 'italic', 'underline', 'header1', 'header2', 'unorderedlist', 'orderedlist'],
@@ -9,7 +9,7 @@ $(document).ready(function(){
   // autosize
   // $("#feature_title, #feature_subtitle, #feature_tag_list, #feature_text, #value_persona").autosize();
 
-  // saving function for new and edit 
+  // Autosave function that saves on the new and edit 1.5 seconds after the last typing on the included divs
   var timeout;
   $('.editable, .feature_edit, .new_feature').on('keyup paste', function () {
     clearTimeout(timeout);
@@ -18,7 +18,7 @@ $(document).ready(function(){
     timeout = setTimeout("$('.new_feature, .feature_edit').submit(); ", 1500);
   });
 
-  // saving function for role 
+  // if you add a role to a collaborator, trigger the save function after 3 seconds
   $('.role').on('keyup paste', function () {
   clearTimeout(timeout);
   $('.status').html('saving...');
